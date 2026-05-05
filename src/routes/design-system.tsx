@@ -68,7 +68,7 @@ function Swatch({ name, cssVar, hex, onDark }: SwatchProps) {
       <p className="font-mono text-[10px] text-muted-foreground">{cssVar}</p>
       <p
         className="font-mono text-[10px]"
-        style={{ color: onDark ? "#e2e2e2" : "#333333" }}
+        style={{ color: onDark ? "var(--color-on-surface)" : "var(--color-outline)" }}
       >
         {hex}
       </p>
@@ -106,9 +106,9 @@ function DesignSystemPage() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="border-b border-outline px-6 py-4">
-        <h1 className="font-heading text-2xl font-bold uppercase tracking-[-0.02em] text-primary">
+        <p className="font-heading text-2xl font-bold uppercase tracking-[-0.02em] text-primary">
           Cyber-OLED Terminal · Design System
-        </h1>
+        </p>
         <p className="mt-1 font-mono text-xs text-muted-foreground">
           Bookmarks · Living style guide
         </p>
@@ -722,7 +722,7 @@ function DesignSystemPage() {
             <div className="flex flex-col items-center gap-3">
               <div
                 className="flex size-24 items-center justify-center border border-primary bg-surface font-mono text-xs text-primary"
-                style={{ boxShadow: "0 0 0 1px #00ffff" }}
+                style={{ boxShadow: "var(--shadow-glow-sm)" }}
               >
                 glow-sm
               </div>
@@ -731,7 +731,7 @@ function DesignSystemPage() {
             <div className="flex flex-col items-center gap-3">
               <div
                 className="flex size-24 items-center justify-center border border-primary bg-surface font-mono text-xs text-primary"
-                style={{ boxShadow: "0 0 10px 2px #00ffff80" }}
+                style={{ boxShadow: "var(--shadow-glow)" }}
               >
                 glow
               </div>
@@ -740,7 +740,7 @@ function DesignSystemPage() {
             <div className="flex flex-col items-center gap-3">
               <div
                 className="flex size-24 items-center justify-center border border-primary bg-surface font-mono text-xs text-primary"
-                style={{ boxShadow: "0 0 15px 4px #00ffff80" }}
+                style={{ boxShadow: "var(--shadow-glow-lg)" }}
               >
                 glow-lg
               </div>
