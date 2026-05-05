@@ -28,6 +28,9 @@ const meta = {
      */
     viewport: { defaultViewport: "mobile1" },
   },
+  args: {
+    pathname: "/",
+  },
 } satisfies Meta<typeof BottomNav>
 
 export default meta
@@ -45,7 +48,7 @@ export const Default: Story = {
       <RouterContextProvider router={router}>
         <div className="relative h-screen bg-background pb-14">
           <div className="p-4 text-on-surface-variant text-sm">Content area</div>
-          <BottomNav />
+          <BottomNav pathname="/" />
         </div>
       </RouterContextProvider>
     )
@@ -63,7 +66,7 @@ export const ActiveNewBookmark: Story = {
       <RouterContextProvider router={router}>
         <div className="relative h-screen bg-background pb-14">
           <div className="p-4 text-on-surface-variant text-sm">Content area</div>
-          <BottomNav />
+          <BottomNav pathname="/bookmarks/new" />
         </div>
       </RouterContextProvider>
     )

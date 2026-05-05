@@ -63,7 +63,7 @@ export function AppShell({ children }: AppShellProps) {
   return (
     <div className="flex min-h-screen bg-background">
       {/* Desktop sidebar — hidden on mobile */}
-      <Sidebar collapsed={collapsed} onToggle={handleToggle} />
+      <Sidebar collapsed={collapsed} onToggle={handleToggle} pathname={pathname} />
 
       {/* Content column */}
       <div className="flex flex-1 flex-col">
@@ -77,7 +77,7 @@ export function AppShell({ children }: AppShellProps) {
       </div>
 
       {/* Mobile bottom nav — hidden on desktop */}
-      <BottomNav />
+      <BottomNav pathname={pathname} />
     </div>
   )
 }

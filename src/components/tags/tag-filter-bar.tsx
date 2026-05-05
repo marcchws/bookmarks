@@ -31,11 +31,10 @@ export function TagFilterBar({ activeSlugs, onToggle }: TagFilterBarProps) {
         className="flex flex-row gap-2 overflow-x-auto py-2"
         style={{ scrollbarWidth: "none" }}
       >
-        {[80, 64, 96].map((w) => (
+        {(["w-20", "w-16", "w-24"] as const).map((w) => (
           <div
             key={w}
-            className="h-11 shrink-0 animate-pulse bg-surface-container-high motion-reduce:animate-none"
-            style={{ width: w }}
+            className={`h-11 shrink-0 animate-pulse bg-surface-container-high motion-reduce:animate-none ${w}`}
             aria-hidden="true"
           />
         ))}
@@ -63,7 +62,7 @@ export function TagFilterBar({ activeSlugs, onToggle }: TagFilterBarProps) {
             "transition-[box-shadow,background-color] duration-75 motion-safe:transition-[box-shadow,background-color]",
             "hover:bg-primary hover:text-on-primary hover:shadow-glow",
             "focus-visible:outline-none focus-visible:shadow-[0_0_0_1px_var(--color-ring)]",
-            "after:absolute after:-inset-y-[10px] after:left-0 after:right-0 after:content-['']",
+            "after:absolute after:-inset-y-2.5 after:left-0 after:right-0 after:content-['']",
           )}
           aria-label="Retry loading tags"
         >
@@ -114,7 +113,7 @@ export function TagFilterBar({ activeSlugs, onToggle }: TagFilterBarProps) {
                 "focus-visible:outline-none focus-visible:shadow-[0_0_0_1px_var(--color-ring)]",
                 "active:translate-x-0.5",
                 // Touch target expansion
-                "after:absolute after:-inset-y-[8px] after:left-0 after:right-0 after:content-['']",
+                "after:absolute after:-inset-y-2 after:left-0 after:right-0 after:content-['']",
                 // Active: magenta fill + black text (DESIGN.md: secondary = magenta for tags)
                 isActive
                   ? "border-secondary bg-secondary text-on-secondary shadow-[0_0_10px_2px_color-mix(in_srgb,var(--color-secondary)_40%,transparent)]"

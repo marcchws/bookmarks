@@ -13,10 +13,7 @@ export async function fetchTags(): Promise<Tag[]> {
 }
 
 export async function createTag(label: string): Promise<Tag> {
-  const slug = label
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
+  const slug = deriveSlug(label)
 
   const res = await fetch("/tags", {
     method: "POST",

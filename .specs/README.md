@@ -6,9 +6,9 @@
 
 | Slug | Name | One-liner | Spec | Build | Ship | Depends on |
 |---|---|---|---|---|---|---|
-| tags | Tags | Tag CRUD — list, create inline, filter chip bar | [x] | [x] | [ ] | — |
-| bookmarks | Bookmarks | Full CRUD — list with search/filter, detail, create/edit form, delete | [x] | [x] | [ ] | tags |
-| shell | App Shell | Collapsible sidebar (desktop) + bottom-nav (mobile), page header, nav wiring for all routes | [x] | [x] | [ ] | tags, bookmarks |
+| tags | Tags | Tag CRUD — list, create inline, filter chip bar | [x] | [x] | [x] | — |
+| bookmarks | Bookmarks | Full CRUD — list with search/filter, detail, create/edit form, delete | [x] | [x] | [x] | tags |
+| shell | App Shell | Collapsible sidebar (desktop) + bottom-nav (mobile), page header, nav wiring for all routes | [x] | [x] | [x] | tags, bookmarks |
 
 **State derives from checkbox combination:**
 

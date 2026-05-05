@@ -33,7 +33,7 @@ function renderSidebar({
     onToggle,
     ...render(
       <RouterContextProvider router={router}>
-        <Sidebar collapsed={collapsed} onToggle={onToggle} />
+        <Sidebar collapsed={collapsed} onToggle={onToggle} pathname={initialEntry} />
       </RouterContextProvider>,
     ),
   }

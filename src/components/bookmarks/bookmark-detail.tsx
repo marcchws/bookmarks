@@ -12,19 +12,12 @@ import {
 import { BookmarkDeleteDialog } from "./bookmark-delete-dialog"
 import { useDeleteBookmark } from "@/hooks/use-delete-bookmark"
 import { formatFullDate, formatRelativeTime } from "@/lib/relative-time"
+import { getFaviconSrc } from "@/lib/url"
 import { cn } from "@/lib/utils"
 import type { Bookmark } from "@/types/bookmark"
 
 interface BookmarkDetailProps {
   bookmark: Bookmark
-}
-
-function getDomain(url: string): string {
-  try {
-    return new URL(url).hostname
-  } catch {
-    return url
-  }
 }
 
 /**
@@ -37,8 +30,7 @@ export function BookmarkDetail({ bookmark }: BookmarkDetailProps) {
   const [deleteOpen, setDeleteOpen] = useState(false)
   const deleteBookmark = useDeleteBookmark()
 
-  const domain = getDomain(bookmark.url)
-  const faviconSrc = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
+  const faviconSrc = getFaviconSrc(bookmark.url)
 
   function handleConfirmDelete() {
     deleteBookmark.mutate(bookmark.id, {

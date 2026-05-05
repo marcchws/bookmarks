@@ -1,18 +1,15 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
-import { Link, useRouterState } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
 import { Tooltip } from "@base-ui/react"
 
-import { NAV_ITEMS } from "./nav-items"
+import { cn } from "@/lib/utils"
+import { NAV_ITEMS, isNavItemActive } from "./nav-items"
 import type { NavItem } from "./nav-items"
 
 interface SidebarProps {
   collapsed: boolean
   onToggle: () => void
-}
-
-function isNavItemActive(item: NavItem, pathname: string): boolean {
-  if (item.to === "/") return pathname === "/"
-  return pathname === item.to || pathname.startsWith(item.to + "/")
+  pathname: string
 }
 
 interface NavLinkProps {
@@ -30,7 +27,7 @@ function NavLink({ item, collapsed, active }: NavLinkProps) {
       to={item.to}
       aria-current={active ? "page" : undefined}
       aria-label={collapsed ? item.label : undefined}
-      className={[
+      className={cn(
         "group relative flex items-center gap-3 border-l-2 px-3 py-3 transition-[border-color,color,background-color,box-shadow] duration-75 motion-reduce:transition-none",
         "min-h-11",
         "focus-visible:outline-none focus-visible:shadow-[0_0_0_1px_var(--color-ring)]",
@@ -38,20 +35,18 @@ function NavLink({ item, collapsed, active }: NavLinkProps) {
           ? isPrimary
             ? "border-primary bg-surface-container text-primary"
             : "border-outline-active bg-surface-container text-primary"
-          : "border-transparent text-on-surface-variant hover:border-outline hover:bg-surface-container hover:text-on-surface hover:shadow-glow-sm",
-        collapsed ? "justify-center px-0" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+          : isPrimary
+            ? "border-transparent text-primary hover:border-primary hover:shadow-glow-sm"
+            : "border-transparent text-on-surface-variant hover:border-outline hover:bg-surface-container hover:text-on-surface hover:shadow-glow-sm",
+        collapsed && "justify-center px-0",
+      )}
     >
       <Icon
-        className={[
+        className={cn(
           "shrink-0 transition-colors duration-75 motion-reduce:transition-none",
           "size-5",
-          active ? "text-primary" : isPrimary ? "text-primary" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+          active || isPrimary ? "text-primary" : "",
+        )}
         aria-hidden="true"
       />
       {!collapsed && (
@@ -80,12 +75,14 @@ function NavLink({ item, collapsed, active }: NavLinkProps) {
   return linkContent
 }
 
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname })
-
+export function Sidebar({ collapsed, onToggle, pathname }: SidebarProps) {
   return (
     <aside
-      style={{ width: collapsed ? "56px" : "220px" }}
+      style={{
+        width: collapsed
+          ? "var(--sidebar-width-collapsed)"
+          : "var(--sidebar-width-expanded)",
+      }}
       className="relative hidden flex-col border-r border-outline bg-surface transition-[width] duration-150 ease-linear motion-reduce:transition-none md:flex"
     >
       {/* Nav items */}

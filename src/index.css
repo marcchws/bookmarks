@@ -139,6 +139,10 @@
   /* DESIGN.md → spacing.bento-gap = 12px */
   --spacing-bento-gap:      0.75rem;
 
+  /* ── Sidebar dimensions ─────────────────────────────────── */
+  --sidebar-width-collapsed:  56px;
+  --sidebar-width-expanded:   220px;
+
   /* ── Glow shadows (neon emission — no standard box shadows) ── */
   /* DESIGN.md → Elevation: neon outer glow for focus/hover */
   --shadow-none:   none;

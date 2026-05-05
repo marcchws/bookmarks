@@ -1,5 +1,16 @@
 import type { Bookmark, BookmarkFormValues } from "@/types/bookmark"
 
+async function parseApiError(res: Response, fallback: string): Promise<string> {
+  const text = await res.text()
+  try {
+    const json = JSON.parse(text) as { message?: string }
+    if (json.message) return json.message
+  } catch {
+    // ignore parse errors
+  }
+  return fallback
+}
+
 // REQ-13: Query keys
 export const bookmarkKeys = {
   all: ["bookmarks"] as const,
@@ -47,15 +58,7 @@ export async function createBookmark(
     body: JSON.stringify(values),
   })
   if (!res.ok) {
-    const text = await res.text()
-    let message = `Failed to create bookmark: ${res.status}`
-    try {
-      const json = JSON.parse(text) as { message?: string }
-      if (json.message) message = json.message
-    } catch {
-      // ignore parse errors
-    }
-    throw new Error(message)
+    throw new Error(await parseApiError(res, `Failed to create bookmark: ${res.status}`))
   }
   return res.json() as Promise<Bookmark>
 }
@@ -71,15 +74,7 @@ export async function updateBookmark(
     body: JSON.stringify(values),
   })
   if (!res.ok) {
-    const text = await res.text()
-    let message = `Failed to update bookmark: ${res.status}`
-    try {
-      const json = JSON.parse(text) as { message?: string }
-      if (json.message) message = json.message
-    } catch {
-      // ignore parse errors
-    }
-    throw new Error(message)
+    throw new Error(await parseApiError(res, `Failed to update bookmark: ${res.status}`))
   }
   return res.json() as Promise<Bookmark>
 }
@@ -88,15 +83,7 @@ export async function updateBookmark(
 export async function deleteBookmark(id: string): Promise<void> {
   const res = await fetch(`/bookmarks/${id}`, { method: "DELETE" })
   if (!res.ok) {
-    const text = await res.text()
-    let message = `Failed to delete bookmark: ${res.status}`
-    try {
-      const json = JSON.parse(text) as { message?: string }
-      if (json.message) message = json.message
-    } catch {
-      // ignore parse errors
-    }
-    throw new Error(message)
+    throw new Error(await parseApiError(res, `Failed to delete bookmark: ${res.status}`))
   }
 }
 

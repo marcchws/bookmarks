@@ -32,11 +32,10 @@ export function BookmarkDetailRoute({ id }: BookmarkDetailRouteProps) {
           </div>
           {/* Body skeleton */}
           <div className="flex flex-col gap-3 p-4">
-            {[240, 180, 300, 160].map((w) => (
+            {(["w-60", "w-44", "w-72", "w-40"] as const).map((w) => (
               <div
                 key={w}
-                className="h-4 animate-pulse bg-surface-container-high motion-reduce:animate-none"
-                style={{ width: w }}
+                className={`h-4 animate-pulse bg-surface-container-high motion-reduce:animate-none ${w}`}
               />
             ))}
           </div>

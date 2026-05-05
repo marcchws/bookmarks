@@ -89,14 +89,14 @@ function BookmarkListPage() {
       </header>
 
       <main className="py-4">
-        {/* REQ-a11y-2, REQ-resp-2: Search bar */}
-        <div className="mb-3">
-          <BookmarkSearch value={q ?? ""} onChange={handleSearchChange} />
-        </div>
-
-        {/* REQ-a11y-6: Tag filter bar */}
-        <div className="mb-4" role="navigation" aria-label="Tag filters">
-          <TagFilterBar activeSlugs={activeTags} onToggle={handleTagToggle} />
+        {/* REQ-a11y-2, REQ-resp-2: Search + tag filters — stacked on mobile, side-by-side at md+ */}
+        <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-start">
+          <div className="md:flex-1">
+            <BookmarkSearch value={q ?? ""} onChange={handleSearchChange} />
+          </div>
+          <div role="group" aria-label="Filter by tag" className="md:w-auto">
+            <TagFilterBar activeSlugs={activeTags} onToggle={handleTagToggle} />
+          </div>
         </div>
 
         {/* REQ-resp-1: Bookmark grid */}

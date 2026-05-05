@@ -20,7 +20,7 @@ function renderBottomNav(initialEntry = "/") {
   const router = makeRouter(initialEntry)
   return render(
     <RouterContextProvider router={router}>
-      <BottomNav />
+      <BottomNav pathname={initialEntry} />
     </RouterContextProvider>,
   )
 }

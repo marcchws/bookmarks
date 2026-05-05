@@ -30,7 +30,11 @@ function SidebarWithState({
   return (
     <RouterContextProvider router={router}>
       <div className="flex h-screen bg-background">
-        <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+        <Sidebar
+          collapsed={collapsed}
+          onToggle={() => setCollapsed((c) => !c)}
+          pathname={initialEntry}
+        />
         <div className="p-8 text-on-surface-variant text-sm">Content area</div>
       </div>
     </RouterContextProvider>
@@ -48,6 +52,11 @@ const meta = {
   // Component needs router context; we provide it per-story via the wrapper.
   // Meta-level decorator is skipped here because each story uses a custom
   // initialCollapsed + initialEntry combination that requires wrapper args.
+  args: {
+    collapsed: false,
+    onToggle: () => {},
+    pathname: "/",
+  },
 } satisfies Meta<typeof Sidebar>
 
 export default meta

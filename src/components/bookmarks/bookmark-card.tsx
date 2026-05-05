@@ -11,19 +11,12 @@ import {
 import { BookmarkDeleteDialog } from "./bookmark-delete-dialog"
 import { useDeleteBookmark } from "@/hooks/use-delete-bookmark"
 import { formatRelativeTime } from "@/lib/relative-time"
+import { getDomain, getFaviconSrc } from "@/lib/url"
 import { cn } from "@/lib/utils"
 import type { Bookmark } from "@/types/bookmark"
 
 interface BookmarkCardProps {
   bookmark: Bookmark
-}
-
-function getDomain(url: string): string {
-  try {
-    return new URL(url).hostname
-  } catch {
-    return url
-  }
 }
 
 /**
@@ -37,7 +30,7 @@ export function BookmarkCard({ bookmark }: BookmarkCardProps) {
   const deleteBookmark = useDeleteBookmark()
 
   const domain = getDomain(bookmark.url)
-  const faviconSrc = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
+  const faviconSrc = getFaviconSrc(bookmark.url)
 
   function handleEdit() {
     void navigate({ to: "/bookmarks/$id/edit", params: { id: bookmark.id } })
@@ -104,7 +97,7 @@ export function BookmarkCard({ bookmark }: BookmarkCardProps) {
           {/* Kebab menu — REQ-10, REQ-a11y-4 */}
           <DropdownMenu>
             <DropdownMenuTrigger
-              aria-label={`Actions for ${bookmark.title}`}
+              aria-label={`Bookmark actions for ${bookmark.title}`}
               className={cn(
                 "relative flex size-7 shrink-0 items-center justify-center border border-transparent",
                 "text-on-surface-variant",

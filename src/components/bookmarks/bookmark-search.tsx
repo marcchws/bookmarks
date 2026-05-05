@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { SearchIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -16,6 +16,12 @@ interface BookmarkSearchProps {
  */
 export function BookmarkSearch({ value, onChange }: BookmarkSearchProps) {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const next = e.target.value

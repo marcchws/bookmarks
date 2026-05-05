@@ -12,3 +12,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Bookmarks", to: "/", icon: BookmarkIcon, variant: "default" },
   { label: "New Bookmark", to: "/bookmarks/new", icon: PlusIcon, variant: "primary" },
 ]
+
+export function isNavItemActive(item: NavItem, pathname: string): boolean {
+  if (item.to === "/") return pathname === "/"
+  return pathname === item.to || pathname.startsWith(item.to + "/")
+}

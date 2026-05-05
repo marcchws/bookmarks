@@ -67,7 +67,7 @@ export function BookmarkGrid({
         role="status"
         aria-label="Loading bookmarks"
         aria-busy="true"
-        className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3"
       >
         {Array.from({ length: 6 }).map((_, i) => (
           <SkeletonCard key={i} />
@@ -86,7 +86,7 @@ export function BookmarkGrid({
   return (
     <div
       aria-busy="false"
-      className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3"
     >
       {bookmarks.map((bookmark) => (
         <BookmarkCard key={bookmark.id} bookmark={bookmark} />

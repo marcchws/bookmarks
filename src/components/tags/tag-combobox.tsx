@@ -2,10 +2,9 @@ import {
   useId,
   useRef,
   useState,
-  useCallback,
   type KeyboardEvent,
 } from "react"
-import { CheckIcon, ChevronsUpDownIcon, Loader2Icon, TagIcon } from "lucide-react"
+import { CheckIcon, ChevronsUpDownIcon, Loader2Icon, TagIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { useTags } from "@/hooks/use-tags"
@@ -17,6 +16,7 @@ interface TagComboboxProps {
   value: string[]
   onChange: (slugs: string[]) => void
   name?: string
+  "aria-labelledby"?: string
 }
 
 /**
@@ -28,8 +28,7 @@ interface TagComboboxProps {
  * - "Create '<value>'" item is appended at bottom of filtered results.
  * - REQ-a11y-2, REQ-a11y-3, REQ-a11y-4 satisfied.
  */
-export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
-  const labelId = useId()
+export function TagCombobox({ value, onChange, name, "aria-labelledby": ariaLabelledBy }: TagComboboxProps) {
   const inputId = useId()
   const listboxId = useId()
 
@@ -39,6 +38,7 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
+  const rafRef = useRef<number | null>(null)
 
   const { data: tags = [], isLoading, isError, refetch } = useTags()
   const createTag = useCreateTag()
@@ -69,24 +69,31 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
   }
 
   function handleOpen() {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     setOpen(true)
     setQuery("")
     setActiveIndex(-1)
     // Focus the input after the popover renders
-    requestAnimationFrame(() => inputRef.current?.focus())
+    rafRef.current = requestAnimationFrame(() => {
+      inputRef.current?.focus()
+      rafRef.current = null
+    })
   }
 
   function handleClose() {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = null
+    }
     setOpen(false)
     setQuery("")
     setActiveIndex(-1)
   }
 
-  async function handleCreate() {
+  async function handleCreate(collision: Tag | undefined) {
     if (!query.trim() || createTag.isPending) return
 
     // REQ-6: collision detection — if slug already exists, select it
-    const collision = tags.find((t) => t.slug === deriveSlug(query.trim()))
     if (collision) {
       toggleSlug(collision.slug)
       setQuery("")
@@ -105,41 +112,37 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
     }
   }
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLInputElement>) => {
-      if (!open) return
+  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    if (!open) return
 
-      switch (e.key) {
-        case "ArrowDown":
-          e.preventDefault()
-          setActiveIndex((i) => Math.min(i + 1, totalItems - 1))
-          break
-        case "ArrowUp":
-          e.preventDefault()
-          setActiveIndex((i) => Math.max(i - 1, 0))
-          break
-        case "Enter":
-          e.preventDefault()
-          if (activeIndex >= 0 && activeIndex < filtered.length) {
-            toggleSlug(filtered[activeIndex].slug)
-          } else if (activeIndex === filtered.length && showCreate) {
-            void handleCreate()
-          } else if (showCreate) {
-            void handleCreate()
-          }
-          break
-        case "Escape":
-          e.preventDefault()
-          handleClose()
-          inputRef.current?.blur()
-          break
-        default:
-          break
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [open, activeIndex, filtered, showCreate, totalItems],
-  )
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault()
+        setActiveIndex((i) => Math.min(i + 1, totalItems - 1))
+        break
+      case "ArrowUp":
+        e.preventDefault()
+        setActiveIndex((i) => Math.max(i - 1, 0))
+        break
+      case "Enter":
+        e.preventDefault()
+        if (activeIndex >= 0 && activeIndex < filtered.length) {
+          toggleSlug(filtered[activeIndex].slug)
+        } else if (activeIndex === filtered.length && showCreate) {
+          void handleCreate(existingMatch)
+        } else if (showCreate) {
+          void handleCreate(existingMatch)
+        }
+        break
+      case "Escape":
+        e.preventDefault()
+        handleClose()
+        inputRef.current?.blur()
+        break
+      default:
+        break
+    }
+  }
 
   // Labels for selected tags shown in the trigger button
   const selectedLabels = value
@@ -160,7 +163,7 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={open ? listboxId : undefined}
-        aria-labelledby={`${labelId} ${inputId}`}
+        aria-labelledby={ariaLabelledBy ?? inputId}
         onClick={() => (open ? handleClose() : handleOpen())}
         className={cn(
           "flex h-11 w-full items-center justify-between border border-border bg-background px-3 py-2",
@@ -321,7 +324,7 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
                     role="option"
                     aria-selected={false}
                     aria-disabled={createTag.isPending}
-                    onClick={() => void handleCreate()}
+                    onClick={() => void handleCreate(existingMatch)}
                     className={cn(
                       "flex cursor-pointer items-center gap-2 border-t border-outline px-3 py-2",
                       "font-mono text-mono text-primary",
@@ -382,7 +385,7 @@ export function TagCombobox({ value, onChange, name }: TagComboboxProps) {
                         "after:absolute after:-inset-[6px] after:content-['']",
                       )}
                     >
-                      ×
+                      <XIcon size={12} aria-hidden="true" />
                     </button>
                   </span>
                 )

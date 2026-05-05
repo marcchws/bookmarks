@@ -260,6 +260,7 @@ export function BookmarkForm({
                 value={field.value}
                 onChange={field.onChange}
                 name="tags"
+                aria-labelledby="bookmark-tags-label"
               />
             )}
           />
