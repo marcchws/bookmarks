@@ -1,5 +1,7 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router"
+import { createRootRoute, Outlet } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"
+
+import { AppShell } from "@/components/layout/app-shell"
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -8,17 +10,9 @@ export const Route = createRootRoute({
 function RootLayout() {
   return (
     <>
-      <Outlet />
-      {import.meta.env.DEV && (
-        <div className="fixed bottom-4 right-4 z-50">
-          <Link
-            to="/design-system"
-            className="font-mono text-xs text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
-          >
-            [DS]
-          </Link>
-        </div>
-      )}
+      <AppShell>
+        <Outlet />
+      </AppShell>
       {import.meta.env.DEV && <TanStackRouterDevtools />}
     </>
   )

@@ -65,9 +65,9 @@ function BookmarkListPage() {
     <div className="mx-auto max-w-[var(--spacing-container-max)] px-[var(--spacing-margin)]">
       {/* Page header */}
       <header className="flex items-center justify-between border-b border-outline py-4">
-        <h1 className="font-heading text-h2 font-semibold uppercase tracking-[-0.01em] text-on-surface">
+        <h2 className="font-heading text-h2 font-semibold uppercase tracking-[-0.01em] text-on-surface sr-only">
           Bookmarks
-        </h1>
+        </h2>
         <button
           type="button"
           onClick={() => void navigate({ to: "/bookmarks/new" })}

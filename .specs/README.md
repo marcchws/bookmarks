@@ -8,6 +8,7 @@
 |---|---|---|---|---|---|---|
 | tags | Tags | Tag CRUD — list, create inline, filter chip bar | [x] | [x] | [ ] | — |
 | bookmarks | Bookmarks | Full CRUD — list with search/filter, detail, create/edit form, delete | [x] | [x] | [ ] | tags |
+| shell | App Shell | Collapsible sidebar (desktop) + bottom-nav (mobile), page header, nav wiring for all routes | [x] | [x] | [ ] | tags, bookmarks |
 
 **State derives from checkbox combination:**
 
@@ -26,6 +27,7 @@ Topological from dependencies. Build in this order:
 
 1. `tags`
 2. `bookmarks`
+3. `shell`
 
 ## Public exports per module
 
@@ -56,6 +58,14 @@ What other modules can rely on. Updated by `/implement` Phase Build after `build
 - Types: `Bookmark`, `BookmarkFormValues` from `src/types/bookmark.ts`
 - `bookmarkKeys` — `src/lib/queries/bookmarks.ts`
 - Routes: `/`, `/bookmarks/new`, `/bookmarks/$id`, `/bookmarks/$id/edit`
+
+### shell — `built`
+
+- `<AppShell />` — `src/components/layout/app-shell.tsx`
+- `<Sidebar />` — `src/components/layout/sidebar.tsx`
+- `<BottomNav />` — `src/components/layout/bottom-nav.tsx`
+- `<PageHeader />` — `src/components/layout/page-header.tsx`
+- Types: `NavItem`, `NAV_ITEMS` from `src/components/layout/nav-items.ts`
 
 ## Cross-module contracts
 
