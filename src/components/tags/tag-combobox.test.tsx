@@ -36,13 +36,6 @@ function renderCombobox(props: { initialValue?: string[]; name?: string } = {}) 
   render(React.createElement(ControlledCombobox, props), { wrapper: Wrapper })
 }
 
-async function openDropdown(user: ReturnType<typeof userEvent.setup>) {
-  // The trigger is the button with aria-haspopup=listbox
-  const trigger = screen.getByRole("button", { name: /select tags/i })
-  await user.click(trigger)
-  return trigger
-}
-
 // ─── REQ-a11y-2: trigger button accessibility ──────────────────────────────────
 
 describe("TagCombobox — trigger accessibility (REQ-a11y-2)", () => {

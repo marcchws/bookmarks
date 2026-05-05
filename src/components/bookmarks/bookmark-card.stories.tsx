@@ -97,7 +97,7 @@ export const LongTitle: Story = {
  */
 export const GridLayout: Story = {
   decorators: [
-    (Story, ctx) => {
+    () => {
       const queryClient = makeQueryClient()
       const router = makeRouter()
       return (

@@ -16,8 +16,9 @@ export function useUpdateBookmark() {
       id: string
       values: Partial<BookmarkFormValues>
     }) => updateBookmark(id, values),
-    onSuccess: () => {
+    onSuccess: (_data, { id }) => {
       void queryClient.invalidateQueries({ queryKey: bookmarkKeys.all })
+      void queryClient.invalidateQueries({ queryKey: bookmarkKeys.detail(id) })
     },
     onError: (error: Error) => {
       toast.error(error.message)

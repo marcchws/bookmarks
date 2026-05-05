@@ -86,7 +86,8 @@ describe("useBookmarks", () => {
     act(() => {
       const queries = queryClient.getQueryCache().findAll()
       if (queries.length > 0) {
-        expect(queries[0]!.options.staleTime).toBe(30_000)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        expect((queries[0]!.options as any).staleTime).toBe(30_000)
       }
     })
   })

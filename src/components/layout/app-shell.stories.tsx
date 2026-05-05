@@ -26,6 +26,9 @@ const meta = {
   title: "Layout/AppShell",
   component: AppShell,
   tags: ["autodocs"],
+  args: {
+    children: null,
+  },
   parameters: {
     layout: "fullscreen",
     msw: { handlers: [] },
