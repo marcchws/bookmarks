@@ -16,7 +16,6 @@ declare module "@tanstack/react-router" {
 const router = createRouter({ routeTree })
 
 async function enableMocking() {
-  if (!import.meta.env.DEV) return
   const { worker } = await import("@/mocks/browser")
   return worker.start({ onUnhandledRequest: "warn" })
 }
