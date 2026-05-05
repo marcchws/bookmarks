@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# Bookmarks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page bookmark manager built as a stack integration test for the full `/bootstrap → /spec → /implement → /review → /ship` workflow with Claude Code.
 
-Currently, two official plugins are available:
+**[→ Live demo](https://bookmarks-three-kappa.vercel.app)** · **[→ Design system](https://bookmarks-three-kappa.vercel.app/design-system)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## What it does
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Save, organise, and delete URL bookmarks. Tag-based filtering, full-text search, favicon auto-fetch, and a detail view — all backed by MSW mock handlers (no real backend).
 
-## Expanding the ESLint configuration
+## Design
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Cyber-OLED Terminal — absolute black canvas, cyan/magenta neon accents, zero-radius geometry, JetBrains Mono + Space Grotesk typography.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + Vite |
+| Routing | TanStack Router v1 (file-based) |
+| Server state | TanStack Query v5 |
+| Styling | Tailwind v4 (CSS-first `@theme`) + shadcn base-nova |
+| Mocking | MSW v2 (browser worker — runs in all environments) |
+| Forms | React Hook Form + Zod v4 |
+| Testing | Vitest + Testing Library + Storybook 10 |
+| Deploy | Vercel |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Dev
+
+```bash
+pnpm install
+pnpm dev          # Vite dev server on :5173 — MSW starts before first render
+pnpm storybook    # Storybook on :6006
+pnpm test         # Vitest watch
+pnpm test:run     # Vitest CI
+pnpm build        # tsc -b && vite build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+  components/
+    bookmarks/    # BookmarkCard, BookmarkForm, BookmarkDetail, BookmarkGrid, BookmarkSearch
+    layout/       # AppShell, Sidebar, BottomNav, PageHeader
+    tags/         # TagCombobox, TagFilterBar
+    ui/           # shadcn primitives
+  hooks/          # useBookmarks, useBookmark, useCreateBookmark, useUpdateBookmark, useDeleteBookmark, useTags
+  lib/
+    queries/      # MSW-backed fetch functions + TanStack Query keys
+  mocks/          # MSW handlers (browser + Node server)
+  routes/         # File-based routes (TanStack Router v1)
+  test/           # Vitest setup
+```
+
+## Workflow artifacts
+
+- `SRS.md` — software requirements spec
+- `DESIGN.md` — design system tokens (source: Stitch "Cyber-OLED Terminal")
+- `.specs/` — per-module specs (requirements, design, tasks) + visual QA screenshots
