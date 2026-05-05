@@ -70,7 +70,7 @@ export function AppShell({ children }: AppShellProps) {
         <PageHeader title={title} showBack={showBack} />
         <main
           id="main-content"
-          className="flex-1 p-[var(--spacing-gutter)] pb-16 md:pb-[var(--spacing-gutter)]"
+          className="flex-1 p-[var(--spacing-gutter)] pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-[var(--spacing-gutter)]"
         >
           {children}
         </main>

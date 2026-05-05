@@ -82,18 +82,18 @@ export function TagFilterBar({ activeSlugs, onToggle }: TagFilterBarProps) {
     <div
       role="toolbar"
       aria-label="Filter by tag"
-      className="relative w-full overflow-hidden border-b border-outline py-2"
+      className="relative w-full overflow-x-clip border-b border-outline py-2"
     >
-      {/* Right gradient fade for scroll indication */}
+      {/* Right gradient fade for scroll indication — pointer-events-none so scroll is not blocked */}
       <div
-        className="pointer-events-none absolute bottom-0 right-0 top-0 w-12 bg-linear-to-l from-background to-transparent"
+        className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-12 bg-linear-to-l from-background to-transparent"
         aria-hidden="true"
       />
 
-      {/* Scrollable chip row — DESIGN.md: hide scrollbar */}
+      {/* Scrollable chip row — DESIGN.md scrollbar: 2px neon thumb (global styles cover WebKit) */}
       <div
         className="flex flex-row gap-2 overflow-x-auto pl-1 pr-14"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+        style={{ scrollbarWidth: "thin", scrollbarColor: "var(--color-primary) var(--color-outline)" } as React.CSSProperties}
       >
         {tags.map((tag) => {
           const isActive = activeSlugs.includes(tag.slug)

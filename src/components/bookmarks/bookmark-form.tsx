@@ -129,11 +129,6 @@ export function BookmarkForm({
       noValidate
       aria-label={mode === "create" ? "Add bookmark" : "Edit bookmark"}
     >
-      {/* Page heading */}
-      <h2 className="mb-6 font-heading text-h2 font-semibold uppercase tracking-[-0.01em] text-on-surface">
-        {mode === "create" ? "Archive Node" : "Edit Node"}
-      </h2>
-
       <div className="flex flex-col gap-5">
         {/* URL field */}
         <div className="flex flex-col gap-1.5">
