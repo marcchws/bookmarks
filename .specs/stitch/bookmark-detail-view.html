@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookmark Detail Modal - CYBER_OS_v4.2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+        }
+        /* Custom scrollbar for data scroller */
+        ::-webkit-scrollbar {
+            width: 2px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00fbfb;
+            border-radius: 0;
+        }
+        /* Scanlines */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        /* Outer Glow */
+        .neon-glow-primary {
+            box-shadow: 0 0 10px #00fbfb;
+        }
+        .neon-glow-primary-hover:hover {
+            box-shadow: 0 0 20px #00fbfb;
+        }
+        .neon-glow-secondary-hover:hover {
+            box-shadow: 0 0 20px #fe00fe;
+        }
+        .neon-glow-error-hover:hover {
+            box-shadow: 0 0 20px #ffb4ab;
+        }
+        /* Glitch effect placeholder for images */
+        .glitch-hover:hover {
+            filter: contrast(1.5) saturate(2) hue-rotate(90deg);
+        }
+        
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffd7f5",
+                        "on-primary-fixed": "#002020",
+                        "primary-container": "#00fbfb",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#fe00fe",
+                        "primary-fixed-dim": "#00dddd",
+                        "surface-bright": "#393939",
+                        "secondary": "#ffabf3",
+                        "inverse-on-surface": "#303030",
+                        "tertiary-fixed-dim": "#4ce346",
+                        "tertiary-container": "#75ff68",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#00750c",
+                        "on-primary-container": "#007070",
+                        "on-secondary": "#5b005b",
+                        "inverse-primary": "#006a6a",
+                        "surface-tint": "#00dddd",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface": "#131313",
+                        "tertiary-fixed": "#75ff68",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#002201",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#3a4a49",
+                        "on-background": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#810081",
+                        "surface-variant": "#353535",
+                        "on-tertiary-fixed-variant": "#005306",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-container": "#500050",
+                        "surface-container": "#1f1f1f",
+                        "on-surface-variant": "#b9cac9",
+                        "outline": "#839493",
+                        "primary-fixed": "#00fbfb",
+                        "primary": "#ffffff",
+                        "on-tertiary": "#003a03",
+                        "on-surface": "#e2e2e2",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e2e2e2",
+                        "tertiary": "#ffffff",
+                        "on-primary": "#003737",
+                        "surface-container-low": "#1b1b1b",
+                        "surface-container-highest": "#353535",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#380038"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "bento-gap": "12px",
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "16px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sans": ["Inter"],
+                        "h1": ["Space Grotesk"],
+                        "body-mono": ["JetBrains Mono"],
+                        "h2": ["Space Grotesk"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sans": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-mono": ["14px", { "lineHeight": "1.6", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center p-gutter">
+<div class="scanlines"></div>
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"></div>
+<!-- Modal Container -->
+<div class="relative z-50 w-full max-w-[800px] max-h-[921px] bg-surface-dim border-2 border-primary-container neon-glow-primary flex flex-col shadow-[0_0_15px_rgba(0,251,251,0.2)]">
+<!-- Header Bar -->
+<div class="flex items-center justify-between p-unit bg-surface-container-highest border-b border-outline-variant">
+<div class="flex items-center gap-2 pl-2">
+<span class="material-symbols-outlined text-primary-container text-body-mono" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-body-mono text-body-mono text-on-surface uppercase">NODE_DETAILS.EXE</span>
+</div>
+<button class="p-1 hover:bg-error hover:text-on-error transition-colors border border-transparent hover:border-error group">
+<span class="material-symbols-outlined text-on-surface group-hover:text-on-error">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-margin flex flex-col gap-bento-gap">
+<!-- Hero Section -->
+<div class="flex flex-col items-center justify-center py-8 border border-outline-variant bg-surface-container-low relative overflow-hidden group">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;q=80')] opacity-10 bg-cover bg-center group-hover:opacity-20 transition-opacity mix-blend-overlay"></div>
+<div class="relative z-10 w-24 h-24 mb-6 rounded-none border border-primary-container neon-glow-primary overflow-hidden glitch-hover transition-all">
+<img alt="Favicon" class="w-full h-full object-cover" data-alt="A macro shot of a highly detailed, glowing microchip processor emitting an intense cyan neon light in a pitch-black environment. The scene is dominated by geometric circuitry patterns and brutalist technological aesthetics, creating a cyberpunk, high-contrast digital atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtDfzb8PbHr2G5thdhxs4mbr3nktaXe4pGZ4ag2fiwQwVoHLn-77vZb9NVF5OFYADcG3XC2SwokGCHPbA2fBZTJJbHz0bNIY7Z6-TfHYydC74wrGVuhepUa2Rs12ECHlM9jCYvJyh_JzCvLNgc7XNAXzaCQnGSOrt9KGLvEqdooz9CqprrBTzkqcrVEItFmgNz8_uRb_aXZ0QxoE_SfxaZb-Cbd0jf9-4NMgPebzVbdbn-BYd_AdPonCJCYYVq2O7EmILP_x30WA"/>
+</div>
+<h1 class="font-h1 text-h1 text-primary tracking-widest uppercase text-center relative z-10 px-4">
+                    CYBERNETIC_ARCHIVE
+                </h1>
+<div class="flex items-center gap-2 mt-4 relative z-10">
+<span class="w-2 h-2 bg-tertiary-container animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-tertiary-container">STATUS: ONLINE</span>
+</div>
+</div>
+<!-- Bento Grid Meta Info -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-bento-gap">
+<!-- URL Panel -->
+<div class="col-span-1 md:col-span-2 border border-outline-variant bg-surface p-4 hover:border-primary-container transition-colors group">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2">TARGET_URL</div>
+<a class="font-body-mono text-body-mono text-primary-container hover:text-primary flex items-center gap-2 group-hover:translate-x-1 transition-transform break-all" href="#">
+                        https://sys.cyber-archive.net/v4/node/9982-alpha
+                        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+<!-- Timestamps Panel -->
+<div class="col-span-1 border border-outline-variant bg-surface p-4 flex flex-col justify-center gap-3">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">INITIATED</div>
+<div class="font-body-mono text-body-mono text-on-surface">2044-09-12 14:02:44</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">LAST_SYNC</div>
+<div class="font-body-mono text-body-mono text-on-surface">2044-10-01 08:15:11</div>
+</div>
+</div>
+<!-- Description Panel -->
+<div class="col-span-1 md:col-span-3 border border-outline-variant bg-surface p-4 hover:border-primary-container transition-colors">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2">NODE_DESCRIPTION</div>
+<p class="font-body-mono text-body-mono text-on-surface/80 leading-relaxed">
+                        Central repository for encrypted protocol definitions and legacy subnet routing tables. Requires level 4 clearance for write access. Contains critical infrastructure blueprints from the pre-collapse era. Warning: frequent anomalies detected in sub-sector 7. Proceed with standard isolation protocols. <span class="animate-pulse inline-block w-2 h-4 bg-primary-container align-middle ml-1"></span>
+</p>
+</div>
+<!-- Tags Panel -->
+<div class="col-span-1 md:col-span-3 border border-outline-variant bg-surface p-4">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-3">CLASSIFICATION_TAGS</div>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-caps text-label-caps text-secondary-container border border-secondary-container px-3 py-1 hover:bg-secondary-container hover:text-on-secondary-container transition-colors cursor-pointer">ARCHIVE</span>
+<span class="font-label-caps text-label-caps text-primary-container border border-primary-container px-3 py-1 hover:bg-primary-container hover:text-on-primary-container transition-colors cursor-pointer">LEVEL_4</span>
+<span class="font-label-caps text-label-caps text-on-surface border border-outline-variant px-3 py-1 hover:bg-on-surface hover:text-surface transition-colors cursor-pointer">ENCRYPTED</span>
+<span class="font-label-caps text-label-caps text-on-surface border border-outline-variant px-3 py-1 hover:bg-on-surface hover:text-surface transition-colors cursor-pointer">LEGACY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="border-t border-outline-variant p-4 bg-surface-container flex flex-col sm:flex-row justify-between items-center gap-4">
+<div class="flex gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none font-label-caps text-label-caps px-6 py-3 border border-error text-error hover:bg-error hover:text-on-error neon-glow-error-hover transition-all active:translate-x-[2px] uppercase">
+                    PURGE_DATA
+                </button>
+</div>
+<div class="flex gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none font-label-caps text-label-caps px-6 py-3 border border-secondary-container text-secondary-container hover:bg-secondary-container hover:text-on-secondary-container neon-glow-secondary-hover transition-all active:translate-x-[2px] uppercase">
+                    EDIT_RECORD
+                </button>
+<button class="flex-1 sm:flex-none font-label-caps text-label-caps px-6 py-3 bg-primary-container text-on-primary-container border border-primary-container hover:bg-transparent hover:text-primary-container neon-glow-primary-hover transition-all active:translate-x-[2px] uppercase flex items-center justify-center gap-2">
+                    ACCESS_NODE
+                    <span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

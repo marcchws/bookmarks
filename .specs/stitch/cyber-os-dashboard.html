@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CYBER_OS Main Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#00dddd",
+                    "tertiary-container": "#75ff68",
+                    "surface-bright": "#393939",
+                    "inverse-surface": "#e2e2e2",
+                    "background": "#131313",
+                    "on-tertiary-fixed": "#002201",
+                    "on-tertiary": "#003a03",
+                    "secondary-fixed": "#ffd7f5",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "on-secondary-fixed-variant": "#810081",
+                    "outline": "#839493",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-fixed-dim": "#4ce346",
+                    "inverse-primary": "#006a6a",
+                    "tertiary-fixed": "#75ff68",
+                    "inverse-on-surface": "#303030",
+                    "on-background": "#e2e2e2",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary": "#ffffff",
+                    "primary-fixed": "#00fbfb",
+                    "secondary": "#ffabf3",
+                    "on-error": "#690005",
+                    "primary-container": "#00fbfb",
+                    "on-primary-fixed": "#002020",
+                    "surface-tint": "#00dddd",
+                    "on-surface": "#e2e2e2",
+                    "on-primary": "#003737",
+                    "on-tertiary-fixed-variant": "#005306",
+                    "on-secondary": "#5b005b",
+                    "surface-dim": "#131313",
+                    "on-secondary-fixed": "#380038",
+                    "on-secondary-container": "#500050",
+                    "secondary-fixed-dim": "#ffabf3",
+                    "on-tertiary-container": "#00750c",
+                    "secondary-container": "#fe00fe",
+                    "on-surface-variant": "#b9cac9",
+                    "error": "#ffb4ab",
+                    "error-container": "#93000a",
+                    "surface": "#131313",
+                    "surface-container-highest": "#353535",
+                    "primary": "#ffffff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1f1f",
+                    "surface-variant": "#353535",
+                    "on-primary-container": "#007070",
+                    "surface-container-low": "#1b1b1b",
+                    "outline-variant": "#3a4a49"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin": "24px",
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "gutter": "16px",
+                    "bento-gap": "12px"
+            },
+            "fontFamily": {
+                    "body-sans": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "JetBrains Mono"
+                    ],
+                    "h2": [
+                            "Space Grotesk"
+                    ],
+                    "body-mono": [
+                            "JetBrains Mono"
+                    ],
+                    "h1": [
+                            "Space Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "body-sans": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h2": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-mono": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h1": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base HUD Scanline Effect overlay */
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 100;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        
+        /* Grid background for main canvas */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 221, 221, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(254, 0, 254, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Material Icon Setup */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00dddd; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00fbfb; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden h-screen w-screen relative selection:bg-primary-fixed-dim selection:text-background">
+<!-- TopAppBar JSON Render -->
+<header class="bg-black/90 backdrop-blur-md fixed top-0 w-full h-16 border-b border-white/20 shadow-[0_1px_15px_rgba(0,255,255,0.1)] flex justify-between items-center px-6 w-full z-50">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<div class="text-2xl font-black text-cyan-400 border-2 border-cyan-400 px-3 py-1 shadow-[0_0_10px_#00FFFF] cursor-crosshair active:translate-x-[2px]">
+                CYBER_OS_v4.2
+            </div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] uppercase tracking-widest text-sm">
+<a class="text-white border-b-2 border-cyan-400 pb-1 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75" href="#">
+                HUD_HOME
+            </a>
+<a class="text-zinc-500 hover:text-cyan-200 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75" href="#">
+                NETWORK
+            </a>
+<a class="text-zinc-500 hover:text-cyan-200 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75" href="#">
+                ARCHIVE
+            </a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-cyan-400 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-2 flex items-center justify-center border border-transparent hover:border-cyan-400">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+</button>
+<button class="text-cyan-400 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-2 flex items-center justify-center border border-transparent hover:border-cyan-400">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+</button>
+<button class="text-cyan-400 cursor-crosshair active:translate-x-[2px] hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-2 flex items-center justify-center border border-transparent hover:border-cyan-400">
+<span class="material-symbols-outlined" data-icon="power_settings_new">power_settings_new</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar JSON Render -->
+<aside class="bg-black fixed left-0 top-16 bottom-0 w-64 border-r border-zinc-800 flex flex-col h-[calc(100vh-64px)] py-4 overflow-y-auto z-40">
+<!-- Header -->
+<div class="px-6 mb-8 group">
+<div class="text-cyan-400 font-mono text-lg group-hover:translate-x-2 transition-transform duration-100">ROOT_DIR</div>
+<div class="font-['Space_Grotesk'] text-xs font-bold tracking-tighter text-zinc-500 mt-1">v0.9.beta</div>
+</div>
+<!-- Main Tabs -->
+<nav class="flex-1 flex flex-col font-['Space_Grotesk'] text-xs font-bold tracking-tighter">
+<a class="bg-cyan-400/10 text-cyan-400 border-r-4 border-cyan-400 py-3 px-6 flex items-center gap-3 group hover:bg-zinc-900 transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100" data-icon="grid_view">grid_view</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">DASHBOARD</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100" data-icon="folder_open">folder_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">FILESYSTEM</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100" data-icon="query_stats">query_stats</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">NET_TRAFFIC</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100" data-icon="terminal">terminal</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">TERMINAL</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100" data-icon="lock_open">lock_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">ENCRYPTION</span>
+</a>
+</nav>
+<!-- CTA & Footer -->
+<div class="mt-auto px-6 flex flex-col gap-4 font-['Space_Grotesk'] text-xs font-bold tracking-tighter">
+<button class="w-full py-2 border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-colors duration-150 uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,255,0.2)] hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] active:translate-x-[2px]">
+                EXECUTE_CMD
+            </button>
+<div class="flex flex-col gap-1 border-t border-zinc-800 pt-4">
+<a class="text-zinc-600 py-2 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors px-2 -mx-2" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-2 transition-transform duration-100" data-icon="settings">settings</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">SETTINGS</span>
+</a>
+<a class="text-zinc-600 py-2 hover:text-white flex items-center gap-3 group hover:bg-zinc-900 transition-colors px-2 -mx-2" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-2 transition-transform duration-100" data-icon="logout">logout</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">LOGOUT</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin overflow-y-auto h-[calc(100vh-64px)] w-[calc(100vw-256px)] relative z-0 cyber-grid scanlines">
+<div class="max-w-container-max mx-auto w-full flex flex-col gap-margin relative z-10">
+<!-- High-Contrast Command Line Search -->
+<div class="w-full border border-surface-variant bg-surface-container-lowest p-4 flex items-center shadow-[0_0_15px_rgba(0,221,221,0.1)] group focus-within:border-primary-fixed-dim focus-within:shadow-[0_0_20px_rgba(0,221,221,0.3)] transition-all duration-200">
+<span class="font-body-mono text-body-mono text-secondary-container mr-4 select-none">root@cyber_os:~#</span>
+<input class="bg-transparent border-none outline-none w-full font-body-mono text-body-mono text-primary-fixed-dim placeholder-outline-variant focus:ring-0 p-0 m-0" placeholder="AWAITING_INPUT..." type="text"/>
+<span class="w-2 h-5 bg-primary-fixed-dim animate-pulse ml-2"></span>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-12 gap-bento-gap w-full">
+<!-- Node Card 1: Large Wide -->
+<div class="col-span-12 lg:col-span-8 border border-surface-variant bg-surface-container flex flex-col group hover:border-primary-fixed-dim hover:shadow-[0_0_20px_rgba(0,221,221,0.15)] transition-all duration-200">
+<div class="border-b border-surface-variant p-2 flex justify-between items-center bg-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="hub">hub</span>
+<span class="font-label-caps text-label-caps text-on-surface">GLOBAL_NETWORK_TOPOLOGY</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full border border-outline-variant"></div>
+<div class="w-2 h-2 rounded-full border border-outline-variant"></div>
+<div class="w-2 h-2 rounded-full border border-outline-variant"></div>
+</div>
+</div>
+<div class="relative h-64 w-full overflow-hidden bg-surface-container-lowest">
+<img class="object-cover w-full h-full opacity-60 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A highly complex digital network visualization resembling a futuristic city map viewed from above at night. Interconnected glowing data nodes in vibrant cyan and magenta pulsate over a deep OLED black void. The composition feels like a high-density server cluster rendering raw data streams. Lighting is harsh and synthetic, creating a striking cyberpunk aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCYRAKsYPHedESJe3sIZR-Le72gHp4b9ANSJXZD4p603aRSxomKSVcUCQDlKUrqsRmsJt__YDeTBnLRZSLqRzzslX0dEdAlshrVe4sldIJ0UxshUN-YQH0egqxk1UpsZgjDtFKS3cNLxE6RAEBBhhn42zUuqyjIpBdb0__NKGaUrjsVkBScyib2unen953_SkwX5be3y_lwshyViVKLiUAayqN_Z1ELsF1YZcvkgV9KuNO_A57F5f_TjFcDP0Z1rcIG35fJd8h-g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-50"></div>
+<div class="absolute bottom-4 left-4 border border-tertiary-container text-tertiary-container px-2 py-1 font-body-mono text-[10px] uppercase bg-black/50 backdrop-blur-sm">
+                            STATUS: ONLINE
+                        </div>
+</div>
+<div class="p-4 grid grid-cols-3 gap-4 font-body-mono text-body-mono text-[10px] uppercase border-t border-surface-variant bg-surface-container-low">
+<div class="flex flex-col gap-1">
+<span class="text-outline">PACKET_SIZE</span>
+<span class="text-primary-fixed-dim font-bold">14.2 TB</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-outline">LATENCY</span>
+<span class="text-secondary-container font-bold">12ms</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-outline">LAST_SYNC</span>
+<span class="text-on-surface font-bold text-right">04:22:10_UTC</span>
+</div>
+</div>
+</div>
+<!-- Node Card 2: Square Tall -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border border-surface-variant bg-surface-container flex flex-col group hover:border-secondary-container hover:shadow-[0_0_20px_rgba(254,0,254,0.15)] transition-all duration-200">
+<div class="border-b border-surface-variant p-2 flex justify-between items-center bg-surface-container-high group-hover:border-secondary-container/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="vpn_key">vpn_key</span>
+<span class="font-label-caps text-label-caps text-on-surface">AUTH_KEY_STORE</span>
+</div>
+</div>
+<div class="relative h-64 w-full overflow-hidden bg-surface-container-lowest flex items-center justify-center flex-col p-6 text-center">
+<span class="material-symbols-outlined text-[64px] text-surface-variant mb-4 group-hover:text-secondary-container group-hover:scale-110 transition-all duration-300" data-icon="enhanced_encryption">enhanced_encryption</span>
+<div class="font-body-mono text-body-mono text-on-surface-variant break-all">
+                            0x7F...E9A2
+                        </div>
+<div class="w-full h-1 bg-surface-variant mt-6 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-secondary-container w-1/3 animate-[pulse_2s_ease-in-out_infinite]"></div>
+</div>
+</div>
+<div class="p-4 grid grid-cols-2 gap-4 font-body-mono text-body-mono text-[10px] uppercase border-t border-surface-variant bg-surface-container-low group-hover:border-secondary-container/50">
+<div class="flex flex-col gap-1">
+<span class="text-outline">ENCRYPTION</span>
+<span class="text-secondary-container font-bold">AES-256-GCM</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-outline">INTEGRITY</span>
+<span class="text-tertiary-container font-bold text-right">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- Node Card 3: Standard Square -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border border-surface-variant bg-surface-container flex flex-col group hover:border-primary-fixed-dim hover:shadow-[0_0_20px_rgba(0,221,221,0.15)] transition-all duration-200">
+<div class="border-b border-surface-variant p-2 flex justify-between items-center bg-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim" data-icon="storage">storage</span>
+<span class="font-label-caps text-label-caps text-on-surface">DATABANK_ALPHA</span>
+</div>
+</div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-lowest">
+<img class="object-cover w-full h-full opacity-60 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A macro shot of physical server racks in a dark data center environment. The intricate wiring and blinking LED indicator lights are sharp and in focus. The color palette is strictly high-contrast dark mode, dominated by absolute blacks, cold metallic greys, and intense cyan neon highlights emitting from the hardware. The mood is sterile, technical, and immensely powerful." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx-WNXU7VLNt81GLt1dyYA4eZjmqnmQl1Z6S0hJkdzOMFMuG07gvBDxQcbL5w-XmLGMQ59-VNidz_FpFRyw9f7D6X8FrrpLPJpd9WvveLEFAorJCGEvs9-8k5uuuysaIk1aRKjJjaqVNTb32HMGye6VgwQIXdb7tCjzc5NN5rpwv1SlM-fuqfgxVl_43luGOCgja1SokNg6sGhadoYZNuX7FGpmZ6fiZLLtxHq2g1_YMv2LvCGygi-scuCSTZDrCtML-HeTfvyVA"/>
+</div>
+<div class="p-4 grid grid-cols-2 gap-4 font-body-mono text-body-mono text-[10px] uppercase border-t border-surface-variant bg-surface-container-low">
+<div class="flex flex-col gap-1">
+<span class="text-outline">CAPACITY</span>
+<span class="text-primary-fixed-dim font-bold">85% ALLOCATED</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-outline">LAST_SYNC</span>
+<span class="text-on-surface font-bold text-right">-12m</span>
+</div>
+</div>
+</div>
+<!-- Node Card 4: Standard Square -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border border-surface-variant bg-surface-container flex flex-col group hover:border-primary-fixed-dim hover:shadow-[0_0_20px_rgba(0,221,221,0.15)] transition-all duration-200">
+<div class="border-b border-surface-variant p-2 flex justify-between items-center bg-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim" data-icon="satellite_alt">satellite_alt</span>
+<span class="font-label-caps text-label-caps text-on-surface">ORBITAL_UPLINK</span>
+</div>
+</div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-lowest">
+<img class="object-cover w-full h-full opacity-60 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A stark satellite view of a landmass at night, rendered in a heavily stylized digital manner. City lights form glowing clusters and connecting arteries across a pitch-black surface. The colors are artificially shifted to match a brutalist-cyberpunk theme, relying on stark white and cyan luminance against deep space black. The image feels like raw telemetry data being streamed directly to a HUD." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7iUufUDwdm_q8lqnVq-Jo4dT4Ye9K-zAk_-8jASCSmwz0NB_RTyFIu_eWt75AWVTLVV4ETdu_VdEn66WQmc1iRyod6F8zZrF7FPA_CCyntxI_NS8S8oYwSiaFlxUSDLuuOFG8kxn66UmxYGyIJfZ1IejOCaUoLIxnGEwBE9lCVaYL311W5LHjMQ6wz1bXhmDd3da-_c83X6NNc_AsVm5hY4Qo_CqvaHbLaiZb_3GlzTj_mG_q-O-XyDlEhuK26vOBltXn7L84hA"/>
+</div>
+<div class="p-4 grid grid-cols-2 gap-4 font-body-mono text-body-mono text-[10px] uppercase border-t border-surface-variant bg-surface-container-low">
+<div class="flex flex-col gap-1">
+<span class="text-outline">SIGNAL_STR</span>
+<span class="text-tertiary-container font-bold">-42 dBm</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-outline">LAST_SYNC</span>
+<span class="text-on-surface font-bold text-right">SYNCING...</span>
+</div>
+</div>
+</div>
+<!-- Node Card 5: Text Heavy Terminal Log -->
+<div class="col-span-12 lg:col-span-4 border border-surface-variant bg-surface-container flex flex-col group hover:border-surface-bright transition-all duration-200">
+<div class="border-b border-surface-variant p-2 flex justify-between items-center bg-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface" data-icon="list_alt">list_alt</span>
+<span class="font-label-caps text-label-caps text-on-surface">SYSTEM_LOGS</span>
+</div>
+</div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-lowest p-4 font-body-mono text-[10px] text-outline-variant flex flex-col gap-2">
+<div class="flex gap-2"><span class="text-secondary-container">[WARN]</span><span>UNAUTHORIZED_ACCESS_ATTEMPT // PORT 8080</span></div>
+<div class="flex gap-2"><span class="text-primary-fixed-dim">[INFO]</span><span>DEFLECTED_PACKET_STORM // ORIGIN UNKNOWN</span></div>
+<div class="flex gap-2"><span class="text-primary-fixed-dim">[INFO]</span><span>ROUTING_TABLE_UPDATED // +12 NODES</span></div>
+<div class="flex gap-2"><span class="text-tertiary-container">[OK]</span><span>ENCRYPTION_HANDSHAKE_SUCCESSFUL</span></div>
+<div class="flex gap-2"><span class="text-primary-fixed-dim">[INFO]</span><span>SYSTEM_DIAGNOSTICS_RUNNING <span class="animate-pulse">_</span></span></div>
+</div>
+<div class="p-4 grid grid-cols-1 gap-4 font-body-mono text-body-mono text-[10px] uppercase border-t border-surface-variant bg-surface-container-low">
+<div class="flex justify-between">
+<span class="text-outline">TAIL_FILE</span>
+<span class="text-on-surface font-bold hover:text-primary-fixed-dim cursor-pointer">/var/log/syslog</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Network Archive // CYBER_OS</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Design System -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#00dddd",
+                        "tertiary-container": "#75ff68",
+                        "surface-bright": "#393939",
+                        "inverse-surface": "#e2e2e2",
+                        "background": "#131313",
+                        "on-tertiary-fixed": "#002201",
+                        "on-tertiary": "#003a03",
+                        "secondary-fixed": "#ffd7f5",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "on-secondary-fixed-variant": "#810081",
+                        "outline": "#839493",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed-dim": "#4ce346",
+                        "inverse-primary": "#006a6a",
+                        "tertiary-fixed": "#75ff68",
+                        "inverse-on-surface": "#303030",
+                        "on-background": "#e2e2e2",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary": "#ffffff",
+                        "primary-fixed": "#00fbfb",
+                        "secondary": "#ffabf3",
+                        "on-error": "#690005",
+                        "primary-container": "#00fbfb",
+                        "on-primary-fixed": "#002020",
+                        "surface-tint": "#00dddd",
+                        "on-surface": "#e2e2e2",
+                        "on-primary": "#003737",
+                        "on-tertiary-fixed-variant": "#005306",
+                        "on-secondary": "#5b005b",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#380038",
+                        "on-secondary-container": "#500050",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "on-tertiary-container": "#00750c",
+                        "secondary-container": "#fe00fe",
+                        "on-surface-variant": "#b9cac9",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "surface-container-highest": "#353535",
+                        "primary": "#ffffff",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#1f1f1f",
+                        "surface-variant": "#353535",
+                        "on-primary-container": "#007070",
+                        "surface-container-low": "#1b1b1b",
+                        "outline-variant": "#3a4a49"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin": "24px",
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "16px",
+                        "bento-gap": "12px"
+                    },
+                    fontFamily: {
+                        "body-sans": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "h2": ["Space Grotesk"],
+                        "body-mono": ["JetBrains Mono"],
+                        "h1": ["Space Grotesk"]
+                    },
+                    fontSize: {
+                        "body-sans": ["16px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "h2": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-mono": ["14px", { lineHeight: "1.6", letterSpacing: "0.05em", fontWeight: "400" }],
+                        "h1": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Scanline Overlay */
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        
+        /* Blinking Cursor */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Custom Glow Utility Classes based on theme colors for the specific prompt requirements */
+        .glow-dev {
+            box-shadow: 0 0 15px var(--tw-colors-primary-fixed);
+            border-color: var(--tw-colors-primary-fixed);
+        }
+        .glow-design {
+            box-shadow: 0 0 15px var(--tw-colors-secondary-container);
+            border-color: var(--tw-colors-secondary-container);
+        }
+        .glow-research {
+            box-shadow: 0 0 15px var(--tw-colors-tertiary-fixed);
+            border-color: var(--tw-colors-tertiary-fixed);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen relative font-body-mono overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- CRT Scanline effect -->
+<div class="fixed inset-0 z-0 scanlines opacity-50"></div>
+<!-- SHARED COMPONENT: TopAppBar -->
+<!-- Applying exact style_* keys from JSON -->
+<nav class="fixed top-0 w-full h-16 border-b border-white/20 bg-black/90 backdrop-blur-md shadow-[0_1px_15px_rgba(0,255,255,0.1)] flex justify-between items-center px-6 z-50">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-cyan-400 border-2 border-cyan-400 px-3 py-1 shadow-[0_0_10px_#00FFFF]">CYBER_OS_v4.2</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] uppercase tracking-widest text-sm">
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair" href="#">HUD_HOME</a>
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair" href="#">NETWORK</a>
+<!-- Active State -->
+<a class="text-white border-b-2 border-cyan-400 pb-1 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair" href="#">ARCHIVE</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4 text-cyan-400">
+<span class="material-symbols-outlined cursor-crosshair hover:text-white transition-colors">sensors</span>
+<span class="material-symbols-outlined cursor-crosshair hover:text-white transition-colors">memory</span>
+<span class="material-symbols-outlined cursor-crosshair hover:text-white transition-colors">power_settings_new</span>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="relative z-10 pt-24 px-margin pb-margin max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-8 border-b border-outline-variant pb-4 flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim mb-2">&gt; SYS.QUERY("SELECT * FROM ARCHIVE")</p>
+<h1 class="font-h1 text-h1 text-primary">SUB-NETWORK_ARCHIVE<span class="cursor-blink bg-primary inline-block w-4 h-[1em] align-middle ml-2"></span></h1>
+</div>
+<div class="text-right hidden sm:block">
+<p class="font-body-mono text-body-mono text-outline">INDEX_COUNT: <span class="text-primary">1,024</span></p>
+<p class="font-body-mono text-body-mono text-outline">STATUS: <span class="text-tertiary-fixed">ONLINE</span></p>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-bento-gap">
+<!-- Category: DEV (Cyan Glow) - Spans 8 cols on large screens -->
+<article class="col-span-1 md:col-span-1 lg:col-span-8 bg-surface-container border-[1px] glow-dev relative overflow-hidden group flex flex-col min-h-[300px]">
+<!-- Terminal Card Header -->
+<div class="flex justify-between items-center border-b border-primary-fixed px-3 py-1 bg-surface-container-high">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-primary-fixed">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                        DEV_CORE
+                    </div>
+<div class="flex gap-1">
+<div class="w-2 h-2 bg-outline"></div>
+<div class="w-2 h-2 bg-outline"></div>
+<div class="w-2 h-2 bg-primary-fixed"></div>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between relative z-10">
+<div>
+<h2 class="font-h2 text-h2 text-primary-fixed mb-4">DEVELOPMENT_SECTOR</h2>
+<p class="font-body-mono text-body-mono text-on-surface-variant max-w-lg mb-6">
+                            Primary source code repositories, API endpoints, and raw data streams. Access restricted to level 4 operatives. High throughput environment.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-4 mt-auto">
+<div class="bg-surface-container-lowest border border-primary-fixed-dim px-3 py-2">
+<span class="block font-label-caps text-label-caps text-outline mb-1">ACTIVE_NODES</span>
+<span class="font-body-mono text-body-mono text-primary font-bold">42</span>
+</div>
+<div class="bg-surface-container-lowest border border-primary-fixed-dim px-3 py-2">
+<span class="block font-label-caps text-label-caps text-outline mb-1">UPTIME</span>
+<span class="font-body-mono text-body-mono text-primary font-bold">99.999%</span>
+</div>
+<div class="bg-surface-container-lowest border border-primary-fixed-dim px-3 py-2">
+<span class="block font-label-caps text-label-caps text-outline mb-1">COMPILING</span>
+<span class="font-body-mono text-body-mono text-primary font-bold animate-pulse">TRUE</span>
+</div>
+</div>
+</div>
+<!-- Background visual element -->
+<div class="absolute right-0 bottom-0 opacity-10 pointer-events-none w-1/2 h-full bg-gradient-to-tl from-primary-fixed to-transparent"></div>
+</article>
+<!-- Category: DESIGN (Magenta Glow) - Spans 4 cols -->
+<article class="col-span-1 md:col-span-1 lg:col-span-4 bg-surface-container border-[1px] glow-design relative overflow-hidden group flex flex-col min-h-[300px]">
+<div class="flex justify-between items-center border-b border-secondary-container px-3 py-1 bg-surface-container-high">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-secondary-container">
+<span class="material-symbols-outlined text-sm">brush</span>
+                        VISUAL_AESTHETICS
+                    </div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h2 class="font-h2 text-h2 text-secondary-container mb-2">DESIGN_GRID</h2>
+<p class="font-body-mono text-body-mono text-on-surface-variant text-sm">
+                            UI/UX parameters, graphical assets, and holographic projections.
+                        </p>
+</div>
+<div class="mt-8 space-y-3">
+<div class="flex justify-between border-b border-surface-variant pb-1">
+<span class="font-label-caps text-label-caps text-outline">ASSET_LOAD</span>
+<span class="font-body-mono text-body-mono text-primary">87%</span>
+</div>
+<div class="flex justify-between border-b border-surface-variant pb-1">
+<span class="font-label-caps text-label-caps text-outline">ACTIVE_NODES</span>
+<span class="font-body-mono text-body-mono text-primary">18</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Category: RESEARCH (Lime Glow) - Spans 6 cols -->
+<article class="col-span-1 md:col-span-2 lg:col-span-6 bg-surface-container border-[1px] glow-research relative overflow-hidden group flex flex-col min-h-[250px]">
+<div class="flex justify-between items-center border-b border-tertiary-fixed px-3 py-1 bg-surface-container-high">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-tertiary-fixed">
+<span class="material-symbols-outlined text-sm">science</span>
+                        R_AND_D
+                    </div>
+</div>
+<div class="p-6 flex flex-row items-center gap-6 flex-grow">
+<div class="flex-1">
+<h2 class="font-h2 text-h2 text-tertiary-fixed mb-2">RESEARCH_LABS</h2>
+<p class="font-body-mono text-body-mono text-on-surface-variant mb-4">
+                            Experimental algorithms, deep learning models, and prototype neural networks.
+                        </p>
+<div class="inline-block bg-surface-container-lowest border border-tertiary-fixed px-3 py-2">
+<span class="font-label-caps text-label-caps text-tertiary-fixed mr-2">ACTIVE_NODES:</span>
+<span class="font-body-mono text-body-mono text-primary font-bold">128</span>
+</div>
+</div>
+<!-- Abstract Data Representation Image -->
+<div class="w-32 h-32 hidden sm:block border border-tertiary-fixed/50 relative bg-surface-container-lowest overflow-hidden" data-alt="A highly detailed, macro-level shot of glowing green fiber optic cables transmitting raw data in a pitch-black server environment. The cables emit a vibrant, toxic lime-green luminescence that cuts through the stark brutalist darkness. The visual style is aggressive, high-contrast cyberpunk, focusing on the intricate, geometric arrangement of the cables. Small sparks of white light suggest high-speed data transfer across the grid." style="background-image: linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313), linear-gradient(45deg, #131313 25%, transparent 25%, transparent 75%, #131313 75%, #131313); background-size: 20px 20px; background-position: 0 0, 10px 10px; background-color: rgba(117, 255, 104, 0.1);">
+</div>
+</div>
+</article>
+<!-- Minor Category: SECURITY (Neutral/Standard Bento) - Spans 3 cols -->
+<article class="col-span-1 md:col-span-1 lg:col-span-3 bg-surface-container border border-outline relative overflow-hidden group flex flex-col min-h-[250px] hover:border-primary transition-colors">
+<div class="flex justify-between items-center border-b border-outline px-3 py-1 bg-surface-container-high">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">shield</span>
+                        SEC_PROTOCOLS
+                    </div>
+</div>
+<div class="p-4 flex flex-col h-full justify-between">
+<h3 class="font-h2 text-[24px] text-primary">FIREWALL</h3>
+<div class="space-y-2 mt-4">
+<div class="bg-surface-container-lowest p-2 border border-outline-variant flex justify-between">
+<span class="font-label-caps text-label-caps text-outline">NODES</span>
+<span class="font-body-mono text-body-mono text-primary">9</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Minor Category: LOGS (Neutral/Standard Bento) - Spans 3 cols -->
+<article class="col-span-1 md:col-span-1 lg:col-span-3 bg-surface-container border border-outline relative overflow-hidden group flex flex-col min-h-[250px] hover:border-primary transition-colors">
+<div class="flex justify-between items-center border-b border-outline px-3 py-1 bg-surface-container-high">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">list_alt</span>
+                        SYSTEM_LOGS
+                    </div>
+</div>
+<div class="p-4 flex flex-col h-full justify-between">
+<h3 class="font-h2 text-[24px] text-primary">ARCHIVE_TXT</h3>
+<div class="space-y-2 mt-4">
+<div class="bg-surface-container-lowest p-2 border border-outline-variant flex justify-between">
+<span class="font-label-caps text-label-caps text-outline">NODES</span>
+<span class="font-body-mono text-body-mono text-primary">512</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+</body></html>

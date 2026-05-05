@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Node Details - CYBER_OS_v4.2</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#00dddd",
+                      "tertiary-container": "#75ff68",
+                      "surface-bright": "#393939",
+                      "inverse-surface": "#e2e2e2",
+                      "background": "#131313",
+                      "on-tertiary-fixed": "#002201",
+                      "on-tertiary": "#003a03",
+                      "secondary-fixed": "#ffd7f5",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "on-secondary-fixed-variant": "#810081",
+                      "outline": "#839493",
+                      "surface-container-lowest": "#0e0e0e",
+                      "tertiary-fixed-dim": "#4ce346",
+                      "inverse-primary": "#006a6a",
+                      "tertiary-fixed": "#75ff68",
+                      "inverse-on-surface": "#303030",
+                      "on-background": "#e2e2e2",
+                      "surface-container-high": "#2a2a2a",
+                      "tertiary": "#ffffff",
+                      "primary-fixed": "#00fbfb",
+                      "secondary": "#ffabf3",
+                      "on-error": "#690005",
+                      "primary-container": "#00fbfb",
+                      "on-primary-fixed": "#002020",
+                      "surface-tint": "#00dddd",
+                      "on-surface": "#e2e2e2",
+                      "on-primary": "#003737",
+                      "on-tertiary-fixed-variant": "#005306",
+                      "on-secondary": "#5b005b",
+                      "surface-dim": "#131313",
+                      "on-secondary-fixed": "#380038",
+                      "on-secondary-container": "#500050",
+                      "secondary-fixed-dim": "#ffabf3",
+                      "on-tertiary-container": "#00750c",
+                      "secondary-container": "#fe00fe",
+                      "on-surface-variant": "#b9cac9",
+                      "error": "#ffb4ab",
+                      "error-container": "#93000a",
+                      "surface": "#131313",
+                      "surface-container-highest": "#353535",
+                      "primary": "#ffffff",
+                      "on-error-container": "#ffdad6",
+                      "surface-container": "#1f1f1f",
+                      "surface-variant": "#353535",
+                      "on-primary-container": "#007070",
+                      "surface-container-low": "#1b1b1b",
+                      "outline-variant": "#3a4a49"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin": "24px",
+                      "unit": "4px",
+                      "container-max": "1440px",
+                      "gutter": "16px",
+                      "bento-gap": "12px"
+              },
+              "fontFamily": {
+                      "body-sans": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "h2": [
+                              "Space Grotesk"
+                      ],
+                      "body-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "h1": [
+                              "Space Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-sans": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h2": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Cyberpunk Utilities */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 10px #00dddd, inset 0 0 5px #00dddd;
+        }
+        .neon-glow-cyan-hover:hover {
+            box-shadow: 0 0 20px #00dddd, inset 0 0 10px #00dddd;
+        }
+        .neon-glow-magenta {
+            box-shadow: 0 0 10px #fe00fe, inset 0 0 5px #fe00fe;
+        }
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .brutalist-border {
+            border-width: 1px;
+            border-style: solid;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-fixed-dim selection:text-black overflow-x-hidden">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full h-16 border-b border-white/20 bg-black/90 backdrop-blur-md shadow-[0_1px_15px_rgba(0,255,255,0.1)] flex justify-between items-center px-6 z-50">
+<div class="flex items-center gap-6">
+<div class="text-2xl font-black text-cyan-400 border-2 border-cyan-400 px-3 py-1 shadow-[0_0_10px_#00FFFF] font-['Space_Grotesk'] uppercase tracking-widest text-sm cursor-crosshair active:translate-x-[2px]">
+                CYBER_OS_v4.2
+            </div>
+<nav class="hidden md:flex gap-6 font-['Space_Grotesk'] uppercase tracking-widest text-sm">
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 px-2 py-1 flex items-center cursor-crosshair active:translate-x-[2px]" href="#">HUD_HOME</a>
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 px-2 py-1 flex items-center cursor-crosshair active:translate-x-[2px]" href="#">NETWORK</a>
+<a class="text-white border-b-2 border-cyan-400 pb-1 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 px-2 flex items-center cursor-crosshair active:translate-x-[2px]" href="#">ARCHIVE</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 text-cyan-400">
+<button class="hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-1 cursor-crosshair active:translate-x-[2px]">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+<button class="hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-1 cursor-crosshair active:translate-x-[2px]">
+<span class="material-symbols-outlined">memory</span>
+</button>
+<button class="hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 p-1 cursor-crosshair active:translate-x-[2px]">
+<span class="material-symbols-outlined">power_settings_new</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] py-4 overflow-y-auto fixed left-0 top-16 bottom-0 w-64 border-r border-zinc-800 bg-black z-40">
+<div class="px-6 mb-8 group cursor-crosshair">
+<div class="text-cyan-400 font-mono text-lg font-bold tracking-tighter group-hover:translate-x-2 transition-transform duration-100">ROOT_DIR</div>
+<div class="font-['Space_Grotesk'] text-xs font-bold tracking-tighter text-zinc-500 group-hover:translate-x-2 transition-transform duration-100">v0.9.beta</div>
+</div>
+<nav class="flex-1 flex flex-col font-['Space_Grotesk'] text-xs font-bold tracking-tighter">
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">grid_view</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">DASHBOARD</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">folder_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">FILESYSTEM</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">query_stats</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">NET_TRAFFIC</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">terminal</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">TERMINAL</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">lock_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">ENCRYPTION</span>
+</a>
+</nav>
+<div class="px-6 py-4">
+<button class="w-full border border-cyan-400 text-cyan-400 font-['Space_Grotesk'] text-xs font-bold tracking-tighter py-2 hover:bg-cyan-400 hover:text-black transition-colors cursor-crosshair active:translate-x-[2px]">
+                EXECUTE_CMD
+            </button>
+</div>
+<div class="mt-auto font-['Space_Grotesk'] text-xs font-bold tracking-tighter border-t border-zinc-800 pt-4">
+<a class="text-zinc-600 py-2 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">settings</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">SETTINGS</span>
+</a>
+<a class="text-zinc-600 py-2 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-3 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">logout</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">LOGOUT</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-16 min-h-screen bg-background p-margin">
+<div class="max-w-container-max mx-auto grid grid-cols-12 gap-bento-gap">
+<!-- Breadcrumb / Header Block -->
+<div class="col-span-12 brutalist-border border-outline-variant bg-surface-container-lowest p-unit flex items-center justify-between rounded-none">
+<div class="flex items-center gap-4 px-4 py-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">folder_special</span>
+<h1 class="font-h2 text-h2 text-on-surface uppercase tracking-tight">Node_ID: <span class="text-primary-fixed-dim">0x8F9A_OMEGA</span></h1>
+</div>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed-dim border border-transparent hover:border-primary-fixed-dim px-4 py-2 transition-colors flex items-center gap-2 mr-2 cursor-crosshair active:translate-x-[2px]" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                    RETURN_TO_GRID
+                </a>
+</div>
+<!-- Hero Image Block -->
+<div class="col-span-12 lg:col-span-8 brutalist-border border-outline-variant bg-surface-container-low relative overflow-hidden rounded-none min-h-[400px] flex group">
+<div class="absolute top-0 left-0 w-full bg-surface-bright border-b border-outline-variant px-4 py-1 flex items-center gap-2 z-10 font-body-mono text-body-mono text-on-surface-variant text-xs">
+<span class="w-2 h-2 bg-primary-fixed-dim rounded-none animate-pulse"></span>
+                    VISUAL_STREAM_ACTIVE.DAT
+                </div>
+<div class="w-full h-full relative mt-6">
+<!-- Placeholder Image styled to look like a digital node -->
+<div class="w-full h-[400px] bg-surface-container-highest flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at center, #1f1f1f 0%, #131313 100%);">
+<!-- Decorative Grid -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#00dddd 1px, transparent 1px), linear-gradient(90deg, #00dddd 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Abstract Node Shape -->
+<div class="w-48 h-48 border-4 border-primary-fixed-dim rounded-none transform rotate-45 relative z-10 neon-glow-cyan flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+<div class="w-32 h-32 border-2 border-secondary-container absolute transform -rotate-45 neon-glow-magenta"></div>
+<span class="material-symbols-outlined text-6xl text-primary-fixed transform -rotate-45 block">hub</span>
+</div>
+</div>
+<!-- Scanline Overlay -->
+<div class="absolute inset-0 scanlines pointer-events-none"></div>
+</div>
+</div>
+<!-- Side Panels Container -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-bento-gap">
+<!-- Action Block -->
+<div class="brutalist-border border-outline-variant bg-surface-container-low p-4 flex flex-col gap-4 rounded-none">
+<div class="font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant pb-2 mb-2">
+                        SYS_OPERATIONS
+                    </div>
+<button class="w-full brutalist-border border-primary-fixed-dim text-background bg-primary-fixed-dim font-label-caps text-label-caps uppercase hover:bg-transparent hover:text-primary-fixed-dim transition-all shadow-[0_0_15px_#00dddd] hover:shadow-none py-4 px-6 text-center cursor-crosshair active:translate-x-[2px] flex justify-center items-center gap-2 relative overflow-hidden group/btn">
+<span class="absolute inset-0 w-full h-full bg-black opacity-0 group-hover/btn:opacity-10 transition-opacity"></span>
+<span class="material-symbols-outlined">rocket_launch</span>
+                        EXECUTE_NODE
+                    </button>
+<button class="w-full brutalist-border border-secondary-container text-secondary-container font-label-caps text-label-caps uppercase hover:bg-secondary-container hover:text-black transition-all hover:shadow-[0_0_15px_#fe00fe] py-4 px-6 text-center cursor-crosshair active:translate-x-[2px] flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">archive</span>
+                        ARCHIVE_DATA
+                    </button>
+</div>
+<!-- Metadata Panel -->
+<div class="brutalist-border border-outline-variant bg-surface-container-lowest p-6 flex flex-col gap-6 rounded-none flex-1">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">METADATA_SIG</span>
+<span class="flex items-center gap-2 font-body-mono text-body-mono text-xs text-tertiary-fixed">
+<span class="w-2 h-2 bg-tertiary-fixed rounded-none animate-pulse"></span>
+                            ONLINE
+                        </span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-outline">LOC_VECTOR</span>
+<a class="font-body-mono text-body-mono text-primary-fixed-dim hover:underline break-all truncate" href="#">
+                            tcp://192.168.0.1:8080/node/0x8F9A
+                        </a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-outline">CYCLE_STAMP</span>
+<span class="font-body-mono text-body-mono text-on-surface">
+                            2049.10.24::14:32:00_UTC
+                        </span>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-outline">CLASS_TAGS</span>
+<div class="flex flex-wrap gap-2">
+<span class="brutalist-border border-primary-container bg-surface-variant text-primary-container font-body-mono text-body-mono text-xs px-2 py-1 cursor-crosshair hover:bg-primary-container hover:text-black transition-colors">
+                                #0x00F
+                            </span>
+<span class="brutalist-border border-secondary-container bg-surface-variant text-secondary-container font-body-mono text-body-mono text-xs px-2 py-1 cursor-crosshair hover:bg-secondary-container hover:text-black transition-colors">
+                                #CRITICAL
+                            </span>
+<span class="brutalist-border border-outline bg-surface-variant text-outline font-body-mono text-body-mono text-xs px-2 py-1 cursor-crosshair hover:bg-outline hover:text-black transition-colors">
+                                #INDEXED
+                            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Terminal Notes Block -->
+<div class="col-span-12 brutalist-border border-outline-variant bg-surface-dim p-0 flex flex-col rounded-none min-h-[250px]">
+<div class="bg-surface-bright border-b border-outline-variant px-4 py-2 flex items-center justify-between font-label-caps text-label-caps text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                        NOTES.TXT
+                    </div>
+<span class="text-outline-variant">RO/RW</span>
+</div>
+<div class="p-6 font-body-mono text-body-mono text-tertiary-fixed flex-1 overflow-auto relative">
+<p class="mb-2">&gt; INITIALIZING LOG STREAM...</p>
+<p class="mb-2">&gt; NODE 0x8F9A INTERCEPTED DURING ROUTINE SCRAPE.</p>
+<p class="mb-2">&gt; CONTENTS APPEAR HEAVILY ENCRYPTED. STANDARD DECRYPTION PROTOCOLS FAILED.</p>
+<p class="mb-2">&gt; REQUIRES MANUAL OVERRIDE AND LEVEL 4 CLEARANCE TO PROCEED WITH DATA EXTRACTION.</p>
+<p class="mb-2">&gt; WARNING: POTENTIAL COUNTER-INTRUSION MEASURES DETECTED IN SUB-ROUTINE 4.</p>
+<div class="mt-4 flex items-center">
+<span class="text-primary-fixed-dim mr-2">ROOT@CYBER_OS:~$</span>
+<span class="w-2.5 h-[1.2em] bg-primary-fixed-dim inline-block blinking-cursor align-middle"></span>
+</div>
+<!-- Ambient Terminal Glow -->
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(117,255,104,0.05)]"></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

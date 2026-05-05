@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horizontal Tag Filter Bar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffffff",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#00dddd",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1b1b1b",
+                        "on-secondary-fixed-variant": "#810081",
+                        "on-tertiary-fixed": "#002201",
+                        "surface-dim": "#131313",
+                        "primary-fixed": "#00fbfb",
+                        "secondary-fixed": "#ffd7f5",
+                        "surface-bright": "#393939",
+                        "outline": "#839493",
+                        "surface-container": "#1f1f1f",
+                        "surface": "#131313",
+                        "secondary": "#ffabf3",
+                        "primary": "#ffffff",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-variant": "#353535",
+                        "surface-container-highest": "#353535",
+                        "primary-container": "#00fbfb",
+                        "inverse-surface": "#e2e2e2",
+                        "outline-variant": "#3a4a49",
+                        "on-tertiary": "#003a03",
+                        "on-secondary": "#5b005b",
+                        "on-background": "#e2e2e2",
+                        "tertiary-fixed-dim": "#4ce346",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-container": "#500050",
+                        "inverse-primary": "#006a6a",
+                        "on-primary-container": "#007070",
+                        "tertiary-container": "#75ff68",
+                        "surface-tint": "#00dddd",
+                        "secondary-container": "#fe00fe",
+                        "on-primary": "#003737",
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#005306",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "on-secondary-fixed": "#380038",
+                        "tertiary-fixed": "#75ff68",
+                        "inverse-on-surface": "#303030",
+                        "on-primary-fixed": "#002020",
+                        "on-surface-variant": "#b9cac9",
+                        "on-tertiary-container": "#00750c",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "gutter": "16px",
+                        "margin": "24px",
+                        "unit": "4px",
+                        "bento-gap": "12px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "h2": ["Space Grotesk"],
+                        "body-sans": ["Inter"],
+                        "h1": ["Space Grotesk"],
+                        "body-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sans": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-mono": ["14px", { "lineHeight": "1.6", "letterSpacing": "0.05em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .cyber-glow-active {
+            box-shadow: 0 0 10px rgba(0, 251, 251, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen font-body-sans text-on-background flex flex-col pt-16 md:pt-0">
+<!-- Top Navigation Placeholder (Hidden on Web) -->
+<nav class="md:hidden fixed top-0 w-full h-16 border-b border-white/20 bg-black/90 backdrop-blur-md flex justify-between items-center px-6 z-50">
+<div class="text-cyan-400 font-h1 text-h1 tracking-widest uppercase">CYBER_OS</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-cyan-400">sensors</span>
+</div>
+</nav>
+<!-- Side Navigation Shell (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col h-[calc(100vh)] py-4 overflow-y-auto fixed left-0 top-0 bottom-0 w-64 border-r border-zinc-800 bg-black">
+<div class="px-6 mb-8">
+<h1 class="text-cyan-400 font-mono text-lg font-label-caps text-label-caps">ROOT_DIR</h1>
+<p class="text-zinc-600 font-body-mono text-body-mono text-xs">v0.9.beta</p>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<button class="bg-cyan-400/10 text-cyan-400 border-r-4 border-cyan-400 py-3 px-6 flex items-center gap-3 font-['Space_Grotesk'] text-xs font-bold tracking-tighter hover:bg-zinc-900 transition-colors group">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">grid_view</span>
+                DASHBOARD
+            </button>
+<button class="text-zinc-600 py-3 px-6 flex items-center gap-3 hover:text-white font-['Space_Grotesk'] text-xs font-bold tracking-tighter hover:bg-zinc-900 transition-colors group">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">folder_open</span>
+                FILESYSTEM
+            </button>
+<button class="text-zinc-600 py-3 px-6 flex items-center gap-3 hover:text-white font-['Space_Grotesk'] text-xs font-bold tracking-tighter hover:bg-zinc-900 transition-colors group">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">query_stats</span>
+                NET_TRAFFIC
+            </button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="md:ml-64 flex-1 p-margin w-full max-w-container-max mx-auto relative bg-black min-h-screen">
+<!-- Search and Filter Container -->
+<div class="w-full max-w-3xl mx-auto space-y-bento-gap">
+<!-- Terminal Search Input -->
+<div class="w-full relative border border-outline-variant bg-surface-container-lowest p-1 flex items-center group hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-outline ml-2">search</span>
+<input class="w-full bg-transparent border-none text-on-background font-body-mono text-body-mono focus:ring-0 placeholder:text-outline-variant uppercase tracking-widest pl-3 h-10 outline-none" placeholder="QUERY SYSTEM..." type="text"/>
+<span class="w-2 h-5 bg-primary-container animate-pulse mr-3"></span>
+</div>
+<!-- Horizontal Tag Filter Bar -->
+<div class="relative w-full overflow-hidden bg-black py-2 border-b border-surface-container-high/50">
+<!-- Right Gradient Mask for scroll indication -->
+<div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
+<!-- Scrollable Container -->
+<div class="flex flex-row gap-3 overflow-x-auto no-scrollbar w-full whitespace-nowrap pl-1 pr-16 items-center">
+<!-- Selected Chip (ALL) -->
+<button class="flex-none px-4 py-1.5 bg-primary-container text-on-primary-container font-h2 text-[11px] tracking-widest uppercase border border-primary-container cyber-glow-active transition-all active:translate-x-[2px]">
+                        ALL
+                    </button>
+<!-- Unselected Chips -->
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        NETWORK
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        ENCRYPTED
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        MEDIA
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        SYS_LOGS
+                    </button>
+<!-- Multi-selected state example -->
+<button class="flex-none px-4 py-1.5 bg-transparent text-primary-container font-h2 text-[11px] tracking-widest uppercase border border-primary-container cyber-glow-active transition-all active:translate-x-[2px]">
+                        ARCHIVE
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        SECURE
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        QUARANTINE
+                    </button>
+<button class="flex-none px-4 py-1.5 bg-transparent text-outline-variant font-h2 text-[11px] tracking-widest uppercase border border-outline-variant hover:border-primary-container hover:text-primary-container hover:cyber-glow-active transition-all active:translate-x-[2px]">
+                        TEMP_FILES
+                    </button>
+</div>
+</div>
+<!-- Content Area Placeholder for context -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-bento-gap pt-margin">
+<div class="border border-surface-container-high bg-surface p-4 flex flex-col gap-2 hover:border-primary-container transition-colors group">
+<div class="flex items-center justify-between border-b border-surface-container-high pb-2">
+<span class="font-body-mono text-body-mono text-primary-container text-xs">SYS_LOG_01.dat</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-container">description</span>
+</div>
+<div class="h-24 bg-surface-container-lowest border border-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')]"></div>
+</div>
+</div>
+<div class="border border-surface-container-high bg-surface p-4 flex flex-col gap-2 hover:border-primary-container transition-colors group">
+<div class="flex items-center justify-between border-b border-surface-container-high pb-2">
+<span class="font-body-mono text-body-mono text-outline text-xs">ARCHIVE_BACKUP.tar</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-container">folder_zip</span>
+</div>
+<div class="h-24 bg-surface-container-lowest border border-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')]"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

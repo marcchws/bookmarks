@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Archive - Empty State</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#002020",
+                    "on-primary": "#003737",
+                    "tertiary-fixed": "#75ff68",
+                    "surface-container": "#1f1f1f",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#131313",
+                    "tertiary-fixed-dim": "#4ce346",
+                    "on-surface": "#e2e2e2",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "on-error-container": "#ffdad6",
+                    "surface-tint": "#00dddd",
+                    "on-primary-container": "#007070",
+                    "on-background": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#810081",
+                    "on-tertiary-fixed": "#002201",
+                    "on-secondary": "#5b005b",
+                    "inverse-on-surface": "#303030",
+                    "tertiary": "#ffffff",
+                    "surface-container-low": "#1b1b1b",
+                    "on-tertiary-container": "#00750c",
+                    "secondary-fixed": "#ffd7f5",
+                    "tertiary-container": "#75ff68",
+                    "inverse-primary": "#006a6a",
+                    "secondary": "#ffabf3",
+                    "on-secondary-container": "#500050",
+                    "on-tertiary-fixed-variant": "#005306",
+                    "on-secondary-fixed": "#380038",
+                    "secondary-container": "#fe00fe",
+                    "on-surface-variant": "#b9cac9",
+                    "outline-variant": "#3a4a49",
+                    "primary-container": "#00fbfb",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-bright": "#393939",
+                    "surface-container-highest": "#353535",
+                    "error": "#ffb4ab",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#00dddd",
+                    "surface-variant": "#353535",
+                    "secondary-fixed-dim": "#ffabf3",
+                    "primary-fixed": "#00fbfb",
+                    "outline": "#839493",
+                    "surface-dim": "#131313",
+                    "inverse-surface": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "primary": "#ffffff",
+                    "on-tertiary": "#003a03",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin": "24px",
+                    "bento-gap": "12px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "h1": [
+                            "Space Grotesk"
+                    ],
+                    "body-sans": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "JetBrains Mono"
+                    ],
+                    "h2": [
+                            "Space Grotesk"
+                    ],
+                    "body-mono": [
+                            "JetBrains Mono"
+                    ]
+            },
+            "fontSize": {
+                    "h1": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sans": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h2": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-mono": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base Cyberpunk Background Elements */
+        body {
+            background-color: #131313;
+            background-image: 
+                linear-gradient(rgba(0, 251, 251, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 251, 251, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        
+        /* Scanline Overlay */
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Glitch Text Effect for Icon */
+        .glitch-icon {
+            text-shadow: 
+                2px 0 0 theme('colors.secondary-container'), 
+                -2px 0 0 theme('colors.primary-fixed');
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 2px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 2px); }
+            60% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, -2px); }
+            80% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            100% { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 2px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-sans antialiased min-h-screen overflow-hidden scanlines">
+<!-- TopAppBar -->
+<header class="bg-black/90 backdrop-blur-md fixed top-0 w-full h-16 border-b border-white/20 shadow-[0_1px_15px_rgba(0,255,255,0.1)] flex justify-between items-center px-6 w-full z-50">
+<div class="text-2xl font-black text-cyan-400 border-2 border-cyan-400 px-3 py-1 shadow-[0_0_10px_#00FFFF]">
+            CYBER_OS_v4.2
+        </div>
+<nav class="hidden md:flex gap-8 h-full items-end font-['Space_Grotesk'] uppercase tracking-widest text-sm">
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair pb-1 px-2 flex items-center h-full pt-4" href="#">
+                HUD_HOME
+            </a>
+<a class="text-zinc-500 hover:text-cyan-200 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair pb-1 px-2 flex items-center h-full pt-4" href="#">
+                NETWORK
+            </a>
+<a class="text-white border-b-2 border-cyan-400 pb-1 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair px-2 flex items-center h-full pt-4" href="#">
+                ARCHIVE
+            </a>
+</nav>
+<div class="flex gap-4">
+<button class="text-cyan-400 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair p-1 flex items-center justify-center">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+<button class="text-cyan-400 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair p-1 flex items-center justify-center">
+<span class="material-symbols-outlined">memory</span>
+</button>
+<button class="text-cyan-400 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_20px_#00FFFF] transition-all duration-75 active:translate-x-[2px] cursor-crosshair p-1 flex items-center justify-center">
+<span class="material-symbols-outlined">power_settings_new</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="bg-black fixed left-0 top-16 bottom-0 w-64 border-r border-white/10 flex flex-col h-[calc(100vh-64px)] py-4 overflow-y-auto hidden md:flex border-r border-zinc-800 flat no shadows z-40">
+<div class="px-6 mb-8">
+<h2 class="font-['Space_Grotesk'] text-xs font-bold tracking-tighter text-cyan-400 font-mono text-lg uppercase">ROOT_DIR</h2>
+<p class="font-['Space_Grotesk'] text-xs font-bold tracking-tighter text-zinc-500 uppercase mt-1">v0.9.beta</p>
+</div>
+<nav class="flex-1 flex flex-col font-['Space_Grotesk'] text-xs font-bold tracking-tighter uppercase">
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">grid_view</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">DASHBOARD</span>
+</a>
+<a class="bg-cyan-400/10 text-cyan-400 border-r-4 border-cyan-400 py-3 px-6 hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">folder_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">FILESYSTEM</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">query_stats</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">NET_TRAFFIC</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">terminal</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">TERMINAL</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">lock_open</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">ENCRYPTION</span>
+</a>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full border border-cyan-400 text-cyan-400 py-2 font-['Space_Grotesk'] text-xs font-bold tracking-tighter uppercase hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_15px_#00FFFF] transition-all active:translate-x-[2px] cursor-crosshair flex justify-center items-center gap-2">
+                EXECUTE_CMD
+            </button>
+</div>
+<div class="mt-auto flex flex-col font-['Space_Grotesk'] text-xs font-bold tracking-tighter uppercase border-t border-zinc-800 pt-4">
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">settings</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">SETTINGS</span>
+</a>
+<a class="text-zinc-600 py-3 px-6 hover:text-white hover:bg-zinc-900 transition-colors flex items-center gap-4 group cursor-crosshair" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-100">logout</span>
+<span class="group-hover:translate-x-2 transition-transform duration-100">LOGOUT</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-16 h-screen w-full relative z-10 flex items-center justify-center p-margin">
+<!-- Bento Grid Container for Empty State -->
+<div class="max-w-[800px] w-full grid grid-cols-12 gap-gutter relative">
+<!-- Central Empty State Module -->
+<div class="col-span-12 md:col-span-10 md:col-start-2 bg-surface-container-low border border-outline-variant p-12 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<!-- Terminal Header Bar (Decorative) -->
+<div class="absolute top-0 left-0 w-full h-8 border-b border-outline-variant bg-surface-container flex items-center px-4 justify-between">
+<span class="font-body-mono text-label-caps text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">folder_open</span>
+                        /archive/null_state.sys
+                    </span>
+<div class="flex gap-2">
+<div class="w-2 h-2 bg-outline-variant"></div>
+<div class="w-2 h-2 bg-outline-variant"></div>
+<div class="w-2 h-2 bg-outline-variant"></div>
+</div>
+</div>
+<!-- Content Offset for Header -->
+<div class="mt-12 flex flex-col items-center">
+<!-- Glitched Terminal Icon -->
+<div class="relative w-24 h-24 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-[80px] text-primary-fixed drop-shadow-[0_0_15px_theme(colors.primary-fixed)] relative z-10">terminal</span>
+<!-- Glitch Copy -->
+<span aria-hidden="true" class="material-symbols-outlined text-[80px] text-secondary-container absolute top-0 left-0 opacity-50 glitch-icon z-0">terminal</span>
+</div>
+<!-- Heading -->
+<h1 class="font-h2 text-h2 text-on-surface uppercase mb-4 tracking-tight drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">
+                        NO_BOOKMARKS_DETECTED
+                    </h1>
+<!-- Subtext -->
+<p class="font-body-mono text-body-mono text-on-surface-variant mb-10 max-w-md">
+<span class="text-primary-fixed mr-2">&gt;</span>Save your first URL to initialize the archive<span class="inline-block w-2 h-4 bg-primary-fixed ml-1 animate-[pulse_1s_steps(2,start)_infinite]"></span>
+</p>
+<!-- CTA Button -->
+<button class="group/btn relative px-8 py-4 border border-primary-fixed bg-transparent hover:bg-primary-fixed transition-all duration-100 ease-in-out cursor-crosshair active:translate-x-[2px] active:translate-y-[2px]">
+<span class="font-label-caps text-label-caps text-primary-fixed group-hover/btn:text-on-primary-fixed uppercase tracking-[0.2em] relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                            ADD_BOOKMARK
+                        </span>
+<!-- Neon Glow Underlay on Hover -->
+<div class="absolute inset-0 bg-primary-fixed opacity-0 group-hover/btn:opacity-20 blur-md transition-opacity duration-100 z-0 pointer-events-none"></div>
+</button>
+</div>
+</div>
+<!-- Decorative Accents in Grid -->
+<div class="col-span-12 md:col-span-1 border border-outline-variant hidden md:flex items-end justify-center pb-4 opacity-50">
+<div class="w-[2px] h-32 bg-primary-fixed/30 relative">
+<div class="absolute bottom-0 w-[4px] h-[10px] bg-primary-fixed -left-[1px]"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-1 md:col-start-12 border border-outline-variant hidden md:flex flex-col items-center justify-start pt-4 opacity-50">
+<span class="font-body-mono text-[10px] text-primary-fixed writing-vertical-rl rotate-180">STATUS: OFFLINE</span>
+</div>
+</div>
+</main>
+</body></html>
