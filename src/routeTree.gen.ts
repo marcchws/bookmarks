@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BookmarksNewRouteImport } from './routes/bookmarks/new'
+import { Route as BookmarksIdRouteImport } from './routes/bookmarks/$id'
+import { Route as BookmarksIdEditRouteImport } from './routes/bookmarks/$id.edit'
 
 const DesignSystemRoute = DesignSystemRouteImport.update({
   id: '/design-system',
@@ -22,31 +25,73 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookmarksNewRoute = BookmarksNewRouteImport.update({
+  id: '/bookmarks/new',
+  path: '/bookmarks/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksIdRoute = BookmarksIdRouteImport.update({
+  id: '/bookmarks/$id',
+  path: '/bookmarks/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksIdEditRoute = BookmarksIdEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => BookmarksIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
+  '/bookmarks/$id': typeof BookmarksIdRouteWithChildren
+  '/bookmarks/new': typeof BookmarksNewRoute
+  '/bookmarks/$id/edit': typeof BookmarksIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
+  '/bookmarks/$id': typeof BookmarksIdRouteWithChildren
+  '/bookmarks/new': typeof BookmarksNewRoute
+  '/bookmarks/$id/edit': typeof BookmarksIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
+  '/bookmarks/$id': typeof BookmarksIdRouteWithChildren
+  '/bookmarks/new': typeof BookmarksNewRoute
+  '/bookmarks/$id/edit': typeof BookmarksIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/design-system'
+  fullPaths:
+    | '/'
+    | '/design-system'
+    | '/bookmarks/$id'
+    | '/bookmarks/new'
+    | '/bookmarks/$id/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/design-system'
-  id: '__root__' | '/' | '/design-system'
+  to:
+    | '/'
+    | '/design-system'
+    | '/bookmarks/$id'
+    | '/bookmarks/new'
+    | '/bookmarks/$id/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/design-system'
+    | '/bookmarks/$id'
+    | '/bookmarks/new'
+    | '/bookmarks/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignSystemRoute: typeof DesignSystemRoute
+  BookmarksIdRoute: typeof BookmarksIdRouteWithChildren
+  BookmarksNewRoute: typeof BookmarksNewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +110,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bookmarks/new': {
+      id: '/bookmarks/new'
+      path: '/bookmarks/new'
+      fullPath: '/bookmarks/new'
+      preLoaderRoute: typeof BookmarksNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookmarks/$id': {
+      id: '/bookmarks/$id'
+      path: '/bookmarks/$id'
+      fullPath: '/bookmarks/$id'
+      preLoaderRoute: typeof BookmarksIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookmarks/$id/edit': {
+      id: '/bookmarks/$id/edit'
+      path: '/edit'
+      fullPath: '/bookmarks/$id/edit'
+      preLoaderRoute: typeof BookmarksIdEditRouteImport
+      parentRoute: typeof BookmarksIdRoute
+    }
   }
 }
+
+interface BookmarksIdRouteChildren {
+  BookmarksIdEditRoute: typeof BookmarksIdEditRoute
+}
+
+const BookmarksIdRouteChildren: BookmarksIdRouteChildren = {
+  BookmarksIdEditRoute: BookmarksIdEditRoute,
+}
+
+const BookmarksIdRouteWithChildren = BookmarksIdRoute._addFileChildren(
+  BookmarksIdRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignSystemRoute: DesignSystemRoute,
+  BookmarksIdRoute: BookmarksIdRouteWithChildren,
+  BookmarksNewRoute: BookmarksNewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
